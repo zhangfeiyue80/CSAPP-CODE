@@ -377,11 +377,24 @@ $x*\ _{32}^tx=U2T_{32}\left( (x*x)\ mod\ 2^{32} \right)$	\\
 \textbf{F.}	\\
 由题可知
 $x+\ _{32}^ty=U2T_{32}(ux+uy)$	\\
+$ux+\ _{32}^uuy=( ux+uy ) mod\ 2^{32}$	\\
 ux,uy是unsigned型，$0\le ux<2^{32}$,$0\le ux+uy<2^{33}$	\\
-\textbf{(1)} 当$0\le ux+uy<2^{31}$时,$U2T_{32}(ux+uy)=ux+uy$，此时$x+y=ux+uy$	\\
-\textbf{(2)} 当$2^{31}\le ux+uy<2^{ 32 }$时，$U2T_{32}(ux+uy)=ux+uy-2^{32}$	\\
-\textbf{(3)} 当$2^{32}\le ux+uy<2^{33}$时，$U2T_{32}(ux+uy)=U2T_{32}(ux+uy-2^{32})$	\\
-因为$0\le ux+uy-2^{32}<2^{32}$,
+\textbf{(1)} 当$0\le ux+uy<2^{31}$时,$x+\ _{32}^ty=U2T_{32}(ux+uy)=ux+uy$,$ux+ _{32}^uuy=ux+uy$,此时$x+\ _{32}^ty=ux+\ _{32}^uuy$	\\
+\textbf{(2)} 当$2^{31}\le ux+uy<2^{ 32 }$时，$x+\ _{32}^ty=U2T_{32}(ux+uy)=ux+uy-2^{32}$,$ux+\ _{32}^uuy=ux+uy$,此时，$x+\ _{32}^ty\ne ux+\ _{32}^uuy$	\\
+\textbf{(3)} 当$2^{32}\le ux+uy<2^{33}$时，$x+\ _{32}^ty=U2T_{32}(ux+\ _{32}^uuy)=U2T_{32}(ux+uy-2^{32})$,$ux+\ _{32}^uuy=ux+uy-2^{32}$	\\
+因为$0\le ux+uy-2^{32}<2^{32}$	\\
+当$0\le ux+uy-2^{32}<2^{31}$时，$x+\ _{32}^ty=U2T_{32}(ux+uy-2^{32})=ux+uy-2^{32}$,$ux+\ _{32}^uuy=ux+uy-2^{32}$,此时$x+\ _{32}^ty=ux+\ _{32}^uuy$	\\
+当$2^{31}\le ux+uy-2^{32}<2^{32}$时，$x+\ _{32}^ty=U2T_{32}(ux+uy-2^{32})=ux+uy-2^{32}-2^{32}=ux+uy-2^{33}$	\\
+此时$2^{32}+2^{31}\le ux+uy<2^{33}$,$x+\ _{32}^ty\ne ux+\ _{32}^uuy$	\\
+综上，当$2^{31}\le ux+uy<2^{32}$ and $2^{31}\le ux+uy<2^{33}$时，$x+\ _{32}^ty\ne ux+\ _{32}^uuy$,即$x+y == ux+uy$不成立	\\
+\textbf{G.}	\\
+\begin{math}
+	x*\ _{32}^t\sim y+uy*\ _{32}^uux	\\
+	=x*\ _{32}^t(-1-y)+ux*\ _{32}^uuy	\\
+	=-x-x*\ _{32}^ty+ux*\ _{32}^uuy	\\
+	=-x-
+\end{math}
+
 
 \end{CJK}
 \end{document}
