@@ -3,6 +3,7 @@
 \usepackage{type1cm}
 \usepackage{color}
 \usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
+\newcommand{\blue}[1]{\textcolor[blue]{#1}}
 \begin{document}
 \begin{CJK}{UTF8}{uyhei}
 \begin{CJK}{UTF8}{gkai}
@@ -392,8 +393,51 @@ ux,uy是unsigned型，$0\le ux<2^{32}$,$0\le ux+uy<2^{33}$	\\
 	x*\ _{32}^t\sim y+uy*\ _{32}^uux	\\
 	=x*\ _{32}^t(-1-y)+ux*\ _{32}^uuy	\\
 	=-x-x*\ _{32}^ty+ux*\ _{32}^uuy	\\
-	=-x-
+	=-x-U2T_{32}((x*y)mod\ 2^{32})+(ux*uy)mod\ 2^{32}
+\end{math}\hspace{2em}由补码乘法和无符号乘法的位级等价性，有	\\
+\begin{math}
+	=-x-U2T_{32}\left ((ux*uy)mod\ 2^{32}\right )+(ux*uy)mod\ 2^{32}	\\
 \end{math}
+$0\le(ux*uy)mod\ 2^{32}<2^{32}$	\\
+\textbf{(1)} 当$0\le(ux*uy)mod\ 2^{32}<2^{31}$时	\\
+\begin{math}
+	x*\ _{32}^t\sim y+ux*\ _{32}^uuy	\\
+	=-x-U2T_{32}\left ((ux*uy)mod\ 2^{32}\right )+(ux*uy)mod\ 2^{32}	\\
+	=-x-(ux*uy)mod\ 2^{32}+(ux*uy)mod\ 2^{32}	\\
+	=-x
+\end{math}	\\
+\textbf{(2)} 当$2^{31}\le(ux*uy)mod\ 2^{32}<2^{32}$	\\
+\begin{math}
+	x*\ _{32}^t\sim y+ux*\ _{32}^uuy	\\
+	=-x-U2T_{32}\left ((ux*uy)mod\ 2^{32}\right )+(ux*uy)mod\ 2^{32}	\\
+	=-x-\left( (ux*uy)mod\ 2^{32}-2^{32}\right )+(ux*uy)mod\ 2^{32}	\\
+	=-x-(ux*uy)mod\ 2^{32}+2^{32}+(ux*uy)mod\ 2^{32}	\\
+	=-x+2^{32}	\\
+\end{math}
+综上，当$2^{31}\le(ux*uy)mod\ 2^{32}<2^{32}$时，$x*\sim y+uy*ux ==  -x$为假	\\
+\textbf{练习题2.45}	\\[3ex]
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{|l|c|r|}
+		\hline
+		小数值	&	二进制表示	&	十进制表示	\\
+		\hline
+		$\frac{1}{8}$	&	0.001	&	0.125	\\
+		\hline
+		$\frac{3}{4}$	&	\blue{0.11} &		\blue{}	\\
+		\hline
+		$\frac{25}{16}$	&	&	\\
+		\hline
+				&	10.1011	&	\\
+		\hline
+				&	1.001	&	\\
+		\hline
+				&		&	5.875	\\
+		\hline
+				&		&	3.1875	\\
+		\hline
+	\end{tabular}
+\end{table}
 
 
 \end{CJK}
