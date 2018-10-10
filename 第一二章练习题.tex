@@ -2,6 +2,7 @@
 \usepackage{CJK}
 \usepackage{type1cm}
 \usepackage{color}
+\usepackage{array}
 \usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \begin{document}
@@ -458,7 +459,49 @@ $0\le(ux*uy)mod\ 2^{32}<2^{32}$	\\
 \begin{math}	
 	\Delta x=2000*\Delta t=686.645507552708(m)
 \end{math}	\\[3ex]
-?insert	\\[3ex]
+\newpage	
+\renewcommand\arraystretch{1.5}
+\noindent\textbf{练习题2.47}	
+\begin{table}[ht]
+\centering
+\begin{tabular}{|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|m{5em}<{\centering}|}
+	\hline
+	位	&	e	&	E	&	$2^e$	&	$f$	&	M	&	$2^E\times M$	&	V	&	十进制	\\
+	\hline
+	0 00 00	&	0	&	0	&	1	&	0	&	0	&	$1\times 0$	&	0	&	0	\\
+	\hline
+	0 00 01	&	0	&	0	&	1	&	$\frac{1}{4}$	&	$\frac{1}{4}$	&	$1\times \frac{1}{4}$	&	$\frac{1}{4}$	&	0.25	\\
+	\hline
+	0 00 10	&	0	&	0	&	1	&	$\frac{1}{2}$	&	$\frac{1}{2}$	&	$1\times \frac{1}{2}$	&	$\frac{1}{2}$	&	0.5	\\
+	\hline
+	0 00 11	&	0	&	0	&	1	&	$\frac{3}{4}$	&	$\frac{3}{4}$	&	$1\times \frac{3}{4}$	&	$\frac{3}{4}$	&	0.75	\\
+	\hline
+	0 01 00	&	1	&	0	&	1	&	0	&	1	&	$1\times 1$	&	1	&	1	\\
+	\hline
+	0 01 01	&	1	&	0	&	1	&	$\frac{1}{4}$	&	$\frac{5}{4}$	&	$1\times \frac{5}{4}$	&	$\frac{5}{4}$	&	1.25	\\
+	\hline
+	0 01 10	&	1	&	0	&	1	&	$\frac{1}{2}$	&	$\frac{3}{2}$	&	$1\times \frac{3}{2}$	&	$\frac{3}{2}$	&	1.5	\\
+	\hline
+	0 01 11	&	1	&	0	&	1	&	$\frac{3}{4}$	&	$\frac{7}{4}$	&	$1\times \frac{7}{4}$	&	$\frac{7}{4}$	&	1.75	\\
+	\hline
+	0 10 00	&	2	&	1	&	2	&	0	&	1	&	$2\times 1$	&	2	&	2	\\
+	\hline
+	0 10 01	&	2	&	1	&	2	&	$\frac{1}{4}$	&	$\frac{5}{4}$	&	$2\times \frac{5}{4}$	&	$\frac{5}{2}$	&	2.5	\\
+	\hline
+	0 10 10	&	2	&	1	&	2	&	$\frac{1}{2}$	&	$\frac{3}{2}$	&	$2\times \frac{3}{2}$	&	3	&	3	\\
+	\hline
+	0 10 11	&	2	&	1	&	2	&	$\frac{3}{4}$	&	$\frac{7}{4}$	&	$2\times \frac{7}{4}$	&	$\frac{7}{2}$	&	3.5	\\
+	\hline
+	0 11 00	&	---	&	---	&	---	&	---	&	---	&	---	&	$\infty$	&	---	\\
+	\hline
+	0 11 01	&	---	&	---	&	---	&	---	&	---	&	---	&	NaN	&	---	\\
+	\hline
+	0 11 10	&	---	&	---	&	---	&	---	&	---	&	---	&	NaN	&	---	\\
+	\hline
+	0 11 11	&	---	&	---	&	---	&	---	&	---	&	---	&	NaN	&	---	\\
+	\hline
+\end{tabular}
+\end{table}	\\
 \textbf{练习题2.48}	\\[2ex]
 3510593整数表示:	\\
 $3510593=0x00359141=0011 0101 1001 0001 0100 0001_2$	\\[2ex]
@@ -468,6 +511,7 @@ $3510593=1.1 0101 1001 0001 0100 0001\times 2^{21}$	\\
 21+127=148,$148=1001 0101_2$	\\
 阶码部分: $10010101_2$	\\[2ex]
 浮点表示为: $0 10010101 1 0101 1001 0001 0100 0001 00_2=0100 1010 1101 0110 0100 0101 0000 0100_2=0x4AD64504$
+
 
 \end{CJK}
 \end{document}
