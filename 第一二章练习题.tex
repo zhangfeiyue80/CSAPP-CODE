@@ -611,7 +611,31 @@ movw (\%rax), 4(\%rsp): mov类指令不能直接将位表示从内存的一个�
 movb \%al,\%sl: x86系列cpu中并没有名为sl的寄存器	\\
 movq \%rax,\$0x123: 目的操作数不能是一个立即数	\\
 movl \%eax,\%rdx: 源操作数是一个存储在寄存器中的空间大小为双字的数，目的操作数是一个能存储4字大小数的寄存器，两者不符	\\
-movb \%si, 8(\%rbp): 寄存器si中存储的是一个字大小的数，movb指令指定的是对一个字节大小的数进行操作，两者不符	\\
+movb \%si, 8(\%rbp): 寄存器si中存储的是一个字大小的数，movb指令指定的是对一个字节大小的数进行操作，两者不符	\\[3ex]
+\textbf{练习题3.4}	\\[2ex]
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{8em}<{\centering}|m{8em}<{\centering}|m{12em}<{\centering}|}
+	\hline
+	src\_t	&	dest\_t	&	指令	\\
+	\hline
+	long	&	long	&	movq (\%rdi), \%rax	\\
+		&		&	movq \%rax, (\%rsi)	\\
+	char	&	int	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	char	&	unsigned	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	unsigned char	&	long	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	int	&	char	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	unsigned	&	unsigned char	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	char	&	short	&	\underline{\hspace{10em}}	\\
+		&	&	\underline{\hspace{10em}}	\\
+	\hline
+\end{tabular}
+\end{table}	\\[2ex]
 
 
 
