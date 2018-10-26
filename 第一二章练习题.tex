@@ -596,14 +596,14 @@ $3510593=1.1 0101 1001 0001 0100 0001\times 2^{21}$	\\
 	\hline
 \end{tabular}
 \end{table}	\\[2ex]
-\newpage\textbf{练习题3.3}	\\[2ex]
-movb \$0xF, (\%ebx): 立即数0xF占用不够一个位，与mov类指令movb指定的位操作大小不符	\\
-movl \%rax, (\%rsp): \%rax存放的是个占位4字大小的二进制数,movl指令指定的操作数的占位大小是双字，两者不符	\\
-movw (\%rax), 4(\%rsp): mov类指令不能直接将位表示从内存的一个位置传到另一位置，需要借用到寄存器，通过两条指令来实现。	\\
-movb \%al,\%sl: x86系列cpu中并没有名为sl的寄存器	\\
-movq \%rax,\$0x123: 目的操作数不能是一个立即数	\\
-movl \%eax,\%rdx: 源操作数是一个存储在寄存器中的空间大小为双字的数，目的操作数是一个能存储4字大小数的寄存器，两者不符	\\
-movb \%si, 8(\%rbp): 寄存器si中存储的是一个字大小的数，movb指令指定的是对一个字节大小的数进行操作，两者不符	\\
+\newpage
+\noindent\textbf{练习题3.2}	\\[2ex]
+mov\underline{l} \%eax, (\%rsp)	\\
+mov\underline{w} (\%rax), \%dx	\\
+mov\underline{b} \$0xFF, \%bl	\\
+mov\underline{b} (\%rsp,\%rdx,4), \%dl	\\
+mov\underline{q} (\%rdx), \%rax	\\
+mov\underline{w} \%dx, (\%rax)	\\
 
 
 
