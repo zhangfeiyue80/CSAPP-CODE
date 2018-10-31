@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{CJKutf8}
+\usepackage{type1cm}
+\usepackage{color}
+\usepackage{graphicx}
+\ifx\pdfoutput\undefined
+	\DeclareGraphicsRule{*}{eps}{*}{}
+\else
+	\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+\usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
+\begin{document}
+\begin{CJK}{UTF8}{gkai}
+\end{CJK}
+\begin{CJK}{UTF8}{gbsn}
+\textcolor[rgb]{1,0,0}{\begin{math} \end{math} \begin{math}			\end{math}}
+%\centerline{\Huge{CSAPP Study Log}}		\\[3ex]
+\fontsize{40pt}{40pt}\selectfont
+\centerline{CSAPP Study Log}		\\[3ex]
+\fontsize{18pt}{18pt}\selectfont
+\textbf{1)}				\\[0.5ex]
+$_w^u+x$无符号加法			\\[0.5ex]
+表示与x相加后，取w位无符号整数		\\[0.5ex]
+$_w^t+x$补码加法			\\[0.5ex]
+$-_w^tx$表示x在$^t_w+$下的加法逆元	\\[0.5ex]
+$-_w^ux$表示x在$_w^u+$下的加法逆元	\\[0.5ex]
+\textbf{2)}	\\
+SAL(shift arithmetic left)	算术左移	\\
+SHL(shift logical left)		逻辑左移	\\
+SAR(shift arithmetic right)	自述右移	\\
+SHR(shift logical right)	逻辑右移	\\
+
+
+
+
+\end{CJK}
+\end{document}

@@ -648,7 +648,34 @@ void decode1(long *xp, long *yp, long *zp)	\\
 	\hspace*{4em}	*zp = y;	\\
 	\hspace*{4em}	*zp = z;	\\
 	\hspace*{4em}	return z;	\\
-\}
+\}	\\[3ex]
+\textbf{练习题3.6}	\\
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{18em}<{\centering}|m{10em}<{\centering}|}
+	\hline
+	表达式	&	结果	\\
+	\hline
+	leaq 6(\%ax),\%rdx	&	$x\%2^4+6$	\\
+	\hline
+	leaq (\%rax,\%rcx),\%rdx	&	x+y	\\
+	\hline
+	leaq (\%rax,\%rcx,4),\%rdx	&	x+y*4	\\
+	\hline
+	leaq 7(\%rax,\%rax,8),\%rdx	&	9*x+7	\\
+	\hline
+	leaq 0xA(,\%rcx,4),\%rdx	&	4*y+0xA	\\
+	\hline
+	leaq 9(\%rax,\%rcx,2),\%rdx	&	x+2*y+9	\\
+	\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{练习题3.7}	\\[2ex]
+long scale2(long x,long y,long z)	\\
+\{	\\
+	long t = \underline{5x+2y+8z};	\\
+	return t;	\\
+\}	\\
 
 
 
