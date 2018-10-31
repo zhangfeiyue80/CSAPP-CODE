@@ -675,7 +675,29 @@ long scale2(long x,long y,long z)	\\
 \{	\\
 	long t = \underline{5x+2y+8z};	\\
 	return t;	\\
-\}	\\
+\}	\\[3ex]
+\textbf{练习题3.8}	\\[2ex]
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{18em}<{\centering}|m{10em}<{\centering}|m{10em}<{\centering}|}
+	\hline
+	指令	&	目的	&	值	\\
+	\hline
+	addq \%rcx,(\%rax)	&	0x100	&	0x100	\\
+	\hline
+	subq \%rdx,8(\%rax)	&	0x108	&	0xA8	\\
+	\hline
+	imulq \$16,(\%rax,\%rdx,8)	&	0x118	&	0x110	\\
+	\hline
+	incq 16(\%rax)	&	0x110	&	0x111	\\
+	\hline
+	decq \%rcx	&	rcx	&	0	\\
+	\hline
+	subq \%rdx,\%rax	&	rax	&	0xFD	\\
+	\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{练习题3.9}	\\
 
 
 
