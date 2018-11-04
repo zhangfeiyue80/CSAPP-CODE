@@ -697,7 +697,13 @@ long scale2(long x,long y,long z)	\\
 	\hline
 \end{tabular}
 \end{table}	\\[2ex]
-\textbf{练习题3.9}	\\
+\newpage
+\noindent\textbf{练习题3.9}	\\[2ex]
+shift\_left4\_rightn:	\\
+\hspace*{1em} movq \%rdi, \%rax	\\
+\hspace*{1em} shl \$4, \%rax	\\
+\hspace*{1em} movl \%esi, \%ecx	\\
+\hspace*{1em} sarq \%cl, \%rax	\\[3ex]
 
 
 
