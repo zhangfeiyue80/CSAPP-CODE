@@ -704,6 +704,20 @@ shift\_left4\_rightn:	\\
 \hspace*{1em} shl \$4, \%rax	\\
 \hspace*{1em} movl \%esi, \%ecx	\\
 \hspace*{1em} sarq \%cl, \%rax	\\[3ex]
+\textbf{练习题3.0}	\\[2ex]
+long arith2(long x,long y,long z)	\\
+\{	\\
+\hspace*{2em}	long t1 = \underline{$x | y$};	\\
+\hspace*{2em}	long t2 = \underline{$t1 >> 3$};	\\
+\hspace*{2em}	long t3 = \underline{$\sim{t2}$};	\\
+\hspace*{2em}	long t4 = \underline{z - t3};	\\
+\hspace*{2em}	return t4;	\\
+\}	\\[3ex]
+\textbf{练习题3.11}	\\[2ex]
+\textbf{A.} 将寄存器rdx所有位置0	\\
+\textbf{B.} movq \$0, \%rdx	\\
+\textbf{C.} 实现一个置0运算，用xor \%edx,\%edx 编码需2个字节;用mov \$0,\%rdx编码需5个字节。	\\[2ex]
+
 
 
 
