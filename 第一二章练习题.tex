@@ -716,7 +716,19 @@ long arith2(long x,long y,long z)	\\
 \textbf{练习题3.11}	\\[2ex]
 \textbf{A.} 将寄存器rdx所有位置0	\\
 \textbf{B.} movq \$0, \%rdx	\\
-\textbf{C.} 实现一个置0运算，用xor \%edx,\%edx 编码需2个字节;用mov \$0,\%rdx编码需5个字节。	\\[2ex]
+\textbf{C.} 实现一个置0运算，用xor \%edx,\%edx 编码需2个字节;用mov \$0,\%rdx编码需5个字节。	\\[3ex]
+\textbf{练习题3.12}	\\[2ex]
+\blue{void uremdiv(long x, long y, long *qp, long *rp)}	\\
+\blue{x in \%rdi, y in \%rsi, qp in \%rdx, rp in \%rcx}	\\
+remdiv:	\\
+\hspace*{2em}	movq	\%rdx, \%r8	\hspace*{2em}\blue{Copy qp}	\\
+\hspace*{2em}	movq	\%rdi, \%rax	\hspace*{1.7em}\blue{Move x to lower 8 bytes of dividend}	\\
+\hspace*{2em}	xorq	\%rdx, \%rdx	\hspace*{1.8em}\blue{Sign-extend to upper 8 bytes of dividend}	\\
+\hspace*{2em}	divq	\%rsi		\hspace*{5.2em}\blue{Divide by y}	\\
+\hspace*{2em}	movq 	\%rax, (\%r8)	\hspace*{1.3em}\blue{Store quotient at qp}	\\
+\hspace*{2em}	movq	\%rdx, (\%rcx)	\hspace*{0.8em}\blue{Store remainder at rp}	\\
+\hspace*{2em}	ret	\\
+
 
 
 
