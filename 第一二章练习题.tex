@@ -739,10 +739,35 @@ remdiv:	\\
 \textbf{C.} date\_t是 unsigned char 数据类型，COMP是$>$	\\
 \textbf{D.} date\_t是 int or unsigned int 数据类型，COMP是$!=$	\\[3ex]
 \textbf{练习题3.15}	\\[2ex]
-\textbf{A.} 4003fe	\\
-\textbf{B.} 	\\
-\textbf{C.} 	\\
-\textbf{D.} 	\\
+\textbf{A.}	\\[-3ex]
+\begin{table}[htbp]
+\begin{tabular}{m{10em}m{10em}}
+4003fa: 74 02	&	je \blue{4003fe}	\\
+4003fc: ff d0	&	callq *\%rax	\\
+\end{tabular}
+\end{table}	\\
+\newpage
+\noindent\textbf{B.} 	\\[-3ex]
+\begin{table}[htbp]
+\begin{tabular}{m{10em}m{10em}}
+40042f: 74 f4	&	je \blue{400425}	\\
+400431: 5d	&	pop \%rbp	\\
+\end{tabular}
+\end{table}	\\
+\textbf{C.} 	\\[-3ex]
+\begin{table}[htbp]
+\begin{tabular}{m{10em}m{10em}}
+\blue{400423}: 77 02	&	ja 400547	\\
+\blue{400425}: 5d	&	pop \%rbp	\\
+\end{tabular}
+\end{table}	\\
+\textbf{D.} 	\\[-3ex]
+\begin{table}[htbp]
+\begin{tabular}{m{10em}m{10em}}
+4005e8: e9 73 ff ff ff	&	jmpq \blue{400560}	\\
+4005ed: 90	&	nop 	\\
+\end{tabular}
+\end{table}	\\
 
 
 
