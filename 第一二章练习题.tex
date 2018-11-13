@@ -780,13 +780,50 @@ void cond(long a, long *p)				\\
 	\hspace*{2em}	p\_not\_ez:			\\
 \}							\\[2ex]
 \textbf{B.}	\\
-C语言代码中的if条件，包含两个判断，只有当p为1,且a>*p这两个条件都成立时，才会执行给定的语句。对于给定的两个条件，c能用一个表达式来实现，但汇编却一次只能实现一个判断，因此需要两个条件分支来实现两个判断。	\\[3ex]
-\textbf{练习题3.17}	\\
+C语言代码中的if条件，包含两个判断，只有当p为1,且a$>$*p这两个条件都成立时，才会执行给定的语句。对于给定的两个条件，c能用一个表达式来实现，但汇编却一次只能实现一个判断，因此需要两个条件分支来实现两个判断。	\\[3ex]
+\textbf{练习题3.17}	\\[2ex]
 \textbf{A.}	\\
 long gotodiff\_se(long x, long y)	\\
 \{	\\
+	\hspace*{2em}	long result;		\\
+	\hspace*{2em}	if (x $<$ y)		\\
+	\hspace*{4em}		goto x\_l\_y;	\\
+	\hspace*{2em}	ge\_cnt++;		\\
+	\hspace*{2em}	result = x - y;		\\
+	\hspace*{2em}	return result;		\\
+	\hspace*{1em} x\_l\_y:			\\
+	\hspace*{2em}	lt\_cnt++;		\\
+	\hspace*{2em}	result = y - x;		\\
+	\hspace*{2em}	return result;		\\
+\}	\\[1ex]
+\textbf{B.}	\\
+( 原先答案: jmp类指令不同的指令所需执行的操作数是不同的，选用jmp最少操作数的规则即可。 )	\\
+在大多数情况下，可以在这两种方式中任意选择。但是原来的方法对常见的没有else语句的情况更好一些。对于这种情况，我们只用简单地将翻译规则修改如下:	\\
+	\hspace*{2em}	t = test-expr;		\\
+	\hspace*{2em}	if (!t)			\\
+	\hspace*{4em}		goto done;	\\
+	\hspace*{2em}	then-statement		\\
+	\hspace*{1em} done:			\\
+	基于这种替代规则的翻译更麻烦一些。		\\[3ex]
+\textbf{练习题3.18}	\\
+long test(long x, long y, long z)	\\
+\{					\\
+	\hspace*{2em}	long val = \underline{ x+y+z };	\\
+	\hspace*{2em}	if (\underline{ -3$<$ x })		\\
+	\hspace*{2em}	\{	\\
+	\hspace*{4em}		if (\underline{ z$>=$y })	\\
+	\hspace*{6em}			val = \underline{y*z};	\\
+	\hspace*{4em}		else	\\
+	\hspace*{6em}			val = \underline{x*y};	\\
+	\hspace*{2em}	\}	\\
+	\hspace*{2em}	else if (\underline{2$>$x})			\\
+	\hspace*{4em}		val = \underline{x*z};		\\
+	\hspace*{2em}	return val;						\\
+\}					\\[3ex]
+\textbf{练习题3.19}	\\[1ex]
+\textbf{A.} 由题可知，$T_{OK}=16$, $T_{ran}=31$, 因此$T_{MP}=2(T_{ran}-T_{OK})=30$, 即预测错误处罚大约30个时钟周期。	\\[1ex]
+\textbf{B.} $T_{wrong}=T_{OK}+T_{MP}=16+30=46$, 即当分支预测错误时，这个函数需要46个时钟周期。
 
-\}	\\
 
 
 
