@@ -822,10 +822,33 @@ long test(long x, long y, long z)	\\
 \}					\\[3ex]
 \textbf{练习题3.19}	\\[1ex]
 \textbf{A.} 由题可知，$T_{OK}=16$, $T_{ran}=31$, 因此$T_{MP}=2(T_{ran}-T_{OK})=30$, 即预测错误处罚大约30个时钟周期。	\\[1ex]
-\textbf{B.} $T_{wrong}=T_{OK}+T_{MP}=16+30=46$, 即当分支预测错误时，这个函数需要46个时钟周期。
-
-
-
+\textbf{B.} $T_{wrong}=T_{OK}+T_{MP}=16+30=46$, 即当分支预测错误时，这个函数需要46个时钟周期。	\\[3ex]
+\textbf{练习题3.20}	\\[1ex]
+\textbf{A.} /。OP进行的是除法操作。	\\[1ex]
+\textbf{B.} 	\\
+\hspace*{2em}	\blue{long arith(long x)}	\\
+\hspace*{2em}	\blue{x in \%rdi}		\\
+	       arith:						\\
+		\hspace*{2em}	leaq	7(\%rdi), \%rax		\hspace*{2em}	\blue{\%rax=7+x}	\\
+		\hspace*{2em}	testq	\%rdi, \%rdi		\hspace*{2em}	\blue{\%rdi \& \%rdi}	\\
+		\hspace*{2em}	cmovns	\%rdi, \%rax		\hspace*{2em}	\blue{\%rdi(x)是否为负。非负 \%rax=x; 负 \%rax=7+x}	\\
+		\hspace*{2em}	sarq	\$3, \%rax		\hspace*{2em}	\blue{$\%rax=\%rax/2^3$}	\\
+		\hspace*{2em}	ret				\\[3ex]
+\textbf{练习题3.21}	\\[1ex]
+long test(long x, long y)	\\
+\{	\\
+	\hspace*{2em}	long val = \underline{\hspace*{2em}};			\\
+	\hspace*{2em}	if (\underline{\hspace*{2em}})				\\
+	\hspace*{2em}	\{	\\
+	\hspace*{4em}		if (\underline{\hspace*{2em}})			\\
+	\hspace*{6em}			val = \underline{\hspace*{2em}};	\\
+	\hspace*{4em}		else						\\
+	\hspace*{6em}			val = \underline{\hspace*{2em}};	\\
+	\hspace*{2em}	\}	\\
+	\hspace*{2em}	else if (\underline{\hspace*{2em}})			\\
+	\hspace*{4em}		val = \underline{\hspace*{2em}};		\\
+	\hspace*{2em}	return val;	\\
+\}	\\
 
 
 
