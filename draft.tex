@@ -158,26 +158,27 @@ $1.0\times10^{ 20 }$	\\
 %00 40 05 60
 %\noindent\begin{table}[htbp]
 \newpage
+\textbf{练习题3.21分析}	\\
 \begin{table}[ht]
 \begin{tabular}{m{1em}m{3em}m{12em}l}
 		&	\multicolumn{2}{l}{\blue{long test(long x, long y)}}	&	\\
 		&	\multicolumn{2}{l}{\blue{x in \%rdi, y in \%rsi}}	&	\\
 	test:	\\
 	&	leaq	&	0(,\%rdi,8), \%rax				&	\blue{\%rax=8*x}	\\
-	&	testq	&	\%rsi, \%rsi					&	\blue{\%rsi \& \%rsi}	\\
-		&	jle	&	.L2					&	\blue{\%rsi 非正}\\
-		&	movq	&	\%rsi, \%rax				&	\blue{\%}\\
-		&	subq	&	\%rdi, \%rax				&	\blue{}\\
-		&	movq	&	\%rdi, \%rdx				&	\blue{}\\
-		&	andq	&	\%rsi, \%rdx				&	\blue{}\\
-		&	cmpq	&	\%rsi, \%rdi				&	\blue{}\\
-		&	cmovge	&	\%rdx, \%rax				&	\blue{}\\
-		&	ret	\\
+	&	testq	&	\%rsi, \%rsi					&	\blue{y \& y}	\\
+		&	jle	&	.L2					&	\blue{y $<=$ 0, goto .L2}\\
+		&	movq	&	\%rsi, \%rax				&	\blue{\%rsi $>$ 0, \%rax = y}\\
+		&	subq	&	\%rdi, \%rax				&	\blue{\%rax = y - x}\\
+		&	movq	&	\%rdi, \%rdx				&	\blue{\%rdx = x}\\
+		&	andq	&	\%rsi, \%rdx				&	\blue{\%rdx = x \& y}\\
+		&	cmpq	&	\%rsi, \%rdi				&	\blue{x - y}	\\
+		&	cmovge	&	\%rdx, \%rax				&	\blue{(x -y) $>=$ 0, \%rax = x \& y}	\\
+		&	ret	&						&	\blue{return \%rax}	\\
 	.L2:	\\
-		&	addq	&	\%rsi, \%rdi				&	\\
-		&	cmpq	&	\$-2, \%rsi				&	\\
-		&	cmovle	&	\%rdi, \%rax				&	\\
-		&	ret	\\
+	&	addq	&	\%rsi, \%rdi					&	\blue{\%rdi = x + y}	\\
+	&	cmpq	&	\$-2, \%rsi					&	\blue{y + 2}\\
+	&	cmovle	&	\%rdi, \%rax					&	\blue{(y + 2) $<=$ 0, \%rax = x + y}	\\
+	&	ret	&							&	\blue{return \%rax}	\\
 \end{tabular}
 \end{table}	
 

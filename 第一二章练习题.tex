@@ -837,16 +837,16 @@ long test(long x, long y, long z)	\\
 \textbf{练习题3.21}	\\[1ex]
 long test(long x, long y)	\\
 \{	\\
-	\hspace*{2em}	long val = \underline{\hspace*{2em}};			\\
-	\hspace*{2em}	if (\underline{\hspace*{2em}})				\\
+	\hspace*{2em}	long val = \underline{8*x};			\\
+	\hspace*{2em}	if (\underline{y $>$ 0})				\\
 	\hspace*{2em}	\{	\\
-	\hspace*{4em}		if (\underline{\hspace*{2em}})			\\
-	\hspace*{6em}			val = \underline{\hspace*{2em}};	\\
+	\hspace*{4em}		if (\underline{x $>=$ y})			\\
+	\hspace*{6em}			val = \underline{x \& y};	\\
 	\hspace*{4em}		else						\\
-	\hspace*{6em}			val = \underline{\hspace*{2em}};	\\
+	\hspace*{6em}			val = \underline{y - x};	\\
 	\hspace*{2em}	\}	\\
-	\hspace*{2em}	else if (\underline{\hspace*{2em}})			\\
-	\hspace*{4em}		val = \underline{\hspace*{2em}};		\\
+	\hspace*{2em}	else if (\underline{y $<=$ -2})			\\
+	\hspace*{4em}		val = \underline{x + y};		\\
 	\hspace*{2em}	return val;	\\
 \}	\\
 
