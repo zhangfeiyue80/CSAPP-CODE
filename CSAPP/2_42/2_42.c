@@ -3,14 +3,16 @@
 
 int div16(int x)
 {
-	int number=x;
-	printf("the bit of x is:");
-	show_bytes(&number,sizeof(int));
+//	int number=x;
+//	printf("the bit of x is:");
+//	show_bytes(&number,sizeof(int));
 
-	number=((1<<4)-1)&(number>>31);
-	printf("the bit of ((1<<4)-1)&(x>>31) is:");
-	show_bytes(&number,sizeof(int));
-	return (number+((1<<4)-1)&(number>>31))>>4;
+//	number=(x+(((1<<4)-1)&(x>>31)))>>4;
+//	printf("the bit of (x+((1<<4)-1)&(x>>31))>>4 is:");
+//	show_bytes(&number,sizeof(int));
+
+//	return (x+((1<<4)-1)&(x>>31))>>4;
+	return (x+(((1<<4)-1)&(x>>31)))>>4;
 }
 
 
