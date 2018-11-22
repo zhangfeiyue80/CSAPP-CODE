@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define max_int 2^31-1
-#define max_long 2^63-1
+#define max_int 2147483647
+#define max_long 9223372036854775808llu
 uint64_t fact_do(uint64_t n)
 {
 	uint64_t result = 1;
