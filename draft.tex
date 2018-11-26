@@ -180,7 +180,31 @@ $1.0\times10^{ 20 }$	\\
 	&	cmovle	&	\%rdi, \%rax					&	\blue{(y + 2) $<=$ 0, \%rax = x + y}	\\
 	&	ret	&							&	\blue{return \%rax}	\\
 \end{tabular}
-\end{table}	
+\end{table}	\\
+\textbf{练习题3.23分析}	\\
+\begin{table}[ht]
+\begin{tabular}{m{1em}m{3em}m{12em}l}
+		&	\multicolumn{2}{l}{\blue{long dw\_loop(long x)}}	&	\\
+		&	\multicolumn{2}{l}{\blue{x initially in \%rdi}}	&	\\
+	dw\_loop:	\\
+	&	movq	&	\%rdi, \%rax	&	\blue{\%rax = x}	\\
+	&	movq	&	\%rdi, \%rcx	&	\blue{\%rcx = x}	\\
+	&	imulq	&	\%rdi, \%rcx	&	\blue{\%rcx = x*x}	\\
+	&	leaq	&	(\%rdi, \%rdi), \%rdx	&	\blue{\%rdx = 2*x}	\\
+	.L2:	\\
+	&	leaq	&	1(\%rcx, \%rax), \%rax	&	\blue{\%rax = 1 + $x^2$ + x}	\\
+	&	subq	&	\$1, \%rdx		&	\blue{\%rdx = 2*x - 1}	\\
+&	testq	&	\%rdx, \%rdx		&	\blue{( 2*x-1 ) \& ( 2*x-1 )}	\\
+	&	jg	&	.L2			&	\blue{( 2*x-1 )$>$0, goto .L2; ( 2*x-1 )$<=0$; return \%rax }	\\
+	&	rep;	&	ret			&	\blue{}	\\
+	&	&						&	\blue{}	\\
+	&	&					&	\blue{}	\\
+	&	&					&	\blue{}	\\
+	&	&					&	\blue{}	\\
+	&	&					&	\blue{}	\\
+\end{tabular}
+\end{table}	\\
+
 
 
 
