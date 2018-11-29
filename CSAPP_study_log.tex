@@ -4,6 +4,7 @@
 \usepackage{color}
 \usepackage{array}
 \usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 \begin{document}
 \begin{CJK}{UTF8}{gkai}
 \end{CJK}
@@ -13,7 +14,9 @@
 %\textcolor[rgb]{1,0,0}{\begin{math} \end{math} \begin{math}			\end{math}}
 %\centerline{\Huge{CSAPP Study Log}}		\\[3ex]
 \fontsize{40pt}{40pt}\selectfont
-\centerline{CSAPP Study Log}		
+\centerline{CSAPP Study Log}			
+\fontsize{25pt}{25pt}\selectfont
+\centerline{\red{refinement:右脑阅读，图像阅读}}	
 \fontsize{18pt}{18pt}\selectfont
 \noindent\textbf{1)}			\\
 $_w^u+x$无符号加法			\\[0.5ex]
@@ -48,6 +51,9 @@ $(x<0\ ?\ x+(1<<k)-1 : x) >> k$	\\[1ex]
 \textbf{10)}	\\
 C语言大数定义	\\
 \#define max\_long 9223372036854775808llu	\\
+\textbf{11)}
+逆向工程循环	\\
+我们描述 fact\_do 的过程对于逆向工程循环来说，是一个通用的策略。看看在循环之前如何初始化寄存器，在循环中如何更新和测试寄存器，以及在循环之后又如何使用寄存器。这些步骤中的每一步都提供了一个线索，纵使起来就可以解开谜团。做好准备，你会看到令人惊奇的变换，其中有些情况很明显是编译器能够优化代码，而有些情况很难理解编译器为什么要选用那些奇怪的策略。\red{根据我们的经验，GCC常常做的一些变换，非但不能带来性能好处，反而甚至可能降低代码性能。}	\\
 
 
 

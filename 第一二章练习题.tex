@@ -1,10 +1,11 @@
 \documentclass{article}
-\usepackage{CJK}
-\usepackage{type1cm}
+\usepackage{CJKutf8}
+%\usepackage{type1cm}
 \usepackage{color}
 \usepackage{array}
 \usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 \begin{document}
 \begin{CJK}{UTF8}{uyhei}
 \begin{CJK}{UTF8}{gkai}
@@ -460,7 +461,10 @@ $0\le(ux*uy)mod\ 2^{32}<2^{32}$	\\
 	\Delta x=2000*\Delta t=686.645507552708(m)
 \end{math}	\\[3ex]
 \newpage	
+
+% 表格行距设置
 \renewcommand\arraystretch{1.5}
+
 \noindent\textbf{练习题2.47}	
 \begin{table}[ht]
 \centering
@@ -739,6 +743,8 @@ remdiv:	\\
 \textbf{C.} date\_t是 unsigned char 数据类型，COMP是$>$	\\
 \textbf{D.} date\_t是 int or unsigned int 数据类型，COMP是$!=$	\\[3ex]
 \textbf{练习题3.15}	\\[2ex]
+% 表格行距设置
+\renewcommand\arraystretch{1}
 \textbf{A.}	\\[-3ex]
 \begin{table}[htbp]
 \begin{tabular}{m{10em}m{10em}}
@@ -852,8 +858,43 @@ long test(long x, long y)	\\
 \textbf{练习题3.22}	\\[1ex]
 \textbf{A. }当n!用一个32位int表示时，最大的n的值是12	\\
 \textbf{B. }当n!用一个64位long表示时，最大的n的值是20	\\[3ex]
-\textbf{练习题3.23}	\\[1ex]
-\textbf{A. }
+\newpage
+\noindent\textbf{练习题3.23}	\\[1ex]
+\textbf{A. }\%rax存放x,\%rcx存放y,\%rdx存放n	\\
+\textbf{B. }用寄存器解决了对指针变量和指针间接引用的需求	\\
+\red{编译器认为指针 p 总是指向 x \textbf{( :D c 中其它用到指针的地方编译器是否也是以这种方式实现的，即直接造出一个变量存储在内存中地址为a的位置处 :D)} ，因此表达式 (*p)++ 就能实现 x 加一。代码通过第 7 行的 leaq 指令，把这个加一和加 y 组合起来。}	\\
+\textbf{C. }对汇编代码添加注释后如下所示:	\\[-4ex]
+\begin{table}[htbp]
+\begin{tabular}{m{1em}m{3em}m{12em}l}
+		&	\multicolumn{2}{l}{\blue{long dw\_loop(long x)}}	&	\\
+		&	\multicolumn{2}{l}{\blue{x initially in \%rdi}}	&	\\
+	dw\_loop:	\\
+	&	movq	&	\%rdi, \%rax	&	\blue{\%rax = x}	\\
+	&	movq	&	\%rdi, \%rcx	&	\blue{\%rcx = x}	\\
+	&	imulq	&	\%rdi, \%rcx	&	\blue{\%rcx = x*x}	\\
+	&	leaq	&	(\%rdi, \%rdi), \%rdx	&	\blue{\%rdx = 2*x}	\\
+	.L2:	&	&			&	\blue{loop:}	\\
+	&	leaq	&	1(\%rcx, \%rax), \%rax	&	\blue{\%rax = 1 + $x^2$ + x}	\\
+	&	subq	&	\$1, \%rdx		&	\blue{\%rdx = 2*x - 1}	\\
+	&	testq	&	\%rdx, \%rdx		&	\blue{( 2*x-1 ) \& ( 2*x-1 )}	\\
+	&	jg	&	.L2			&	\blue{( 2*x-1 )$>$0, goto .L2; ( 2*x-1 )$<=0$; return \%rax }	\\
+	&	rep;	&	ret			&	\blue{}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.24}	\\
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long loop\_while(long a, long b)}	\\
+\{	\\
+&	\multicolumn{3}{l}{ long result = \underline{\hspace{8em}}; }	\\
+&	\multicolumn{3}{l}{ while (\underline{\hspace{8em}}) \{ } 	\\
+&	&	\multicolumn{2}{l}{result = \underline{\hspace{8em}};}	\\
+&	&	\multicolumn{2}{l}{a = \underline{\hspace{8em}};}	\\
+&	\multicolumn{3}{l}{\}}	\\
+&	\multicolumn{3}{l}{return result;}	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
 
 
 
