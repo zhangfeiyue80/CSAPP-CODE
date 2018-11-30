@@ -881,17 +881,49 @@ long test(long x, long y)	\\
 	&	rep;	&	ret			&	\blue{}	\\
 \end{tabular}
 \end{table}	\\
-\textbf{练习题3.24}	\\
+\textbf{练习题3.24}	\\[-3ex]
 \begin{table}[ht]
 \begin{tabular}{m{2em}m{2em}m{2em}l}
 	\multicolumn{3}{l}{long loop\_while(long a, long b)}	\\
 \{	\\
-&	\multicolumn{3}{l}{ long result = \underline{\hspace{8em}}; }	\\
-&	\multicolumn{3}{l}{ while (\underline{\hspace{8em}}) \{ } 	\\
-&	&	\multicolumn{2}{l}{result = \underline{\hspace{8em}};}	\\
-&	&	\multicolumn{2}{l}{a = \underline{\hspace{8em}};}	\\
+&	\multicolumn{3}{l}{ long result = \underline{\blue{ 1 }}; }	\\
+&	\multicolumn{3}{l}{ while (\underline{\blue{$a<b$}}) \{ } 	\\
+&	&	\multicolumn{2}{l}{result = \underline{\blue{result*(a+b)}};}	\\
+&	&	\multicolumn{2}{l}{a = \underline{\blue{a+1}};}	\\
 &	\multicolumn{3}{l}{\}}	\\
 &	\multicolumn{3}{l}{return result;}	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.25}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long loop\_while2(long a, long b)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{ long result = \underline{\blue{b}}; }	\\
+	&	\multicolumn{3}{l}{ while (\underline{\blue{ $b>0$ }}) \{ } 	\\
+	&	&	\multicolumn{2}{l}{result = \underline{\blue{result * a}};}	\\
+	&	&	\multicolumn{2}{l}{b = \underline{\blue{b - a}};}	\\
+&	\multicolumn{3}{l}{\}}	\\
+&	\multicolumn{3}{l}{return result;}	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.26}	\\[1ex]
+\textbf{A. }这段代码使用了jump to middle的循环翻译方法	\\
+\newpage
+\noindent\textbf{B. }	\\[-3ex]
+\begin{table}[htbp]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long fun\_a(unsigned long x)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{long val = 0;}	\\
+	&	\multicolumn{3}{l}{ while (x != 0) \{ } 	\\
+	&	&	\multicolumn{2}{l}{val = val \^{} x;}	\\
+	&	&	\multicolumn{2}{l}{x = x $>>$ 1;}	\\
+	&	\multicolumn{3}{l}{ \} } 	\\
+	&	\multicolumn{3}{l}{val = val \& 1;} 	\\
+	&	\multicolumn{3}{l}{return val;} 	\\
 \}	\\
 \end{tabular}
 \end{table}	\\
