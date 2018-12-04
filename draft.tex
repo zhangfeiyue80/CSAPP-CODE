@@ -197,8 +197,6 @@ $1.0\times10^{ 20 }$	\\
 	&	testq	&	\%rdx, \%rdx		&	\blue{( 2*x-1 ) \& ( 2*x-1 )}	\\
 	&	jg	&	.L2			&	\blue{( 2*x-1 )$>$0, goto .L2; ( 2*x-1 )$<=0$; return \%rax }	\\
 	&	rep;	&	ret			&	\blue{}	\\
-	&	&						&	\blue{}	\\
-	&	&					&	\blue{}	\\
 \end{tabular}
 \end{table}	\\
 % %rdx = %rdi+b
@@ -216,21 +214,26 @@ $1.0\times10^{ 20 }$	\\
 %}
 %val = val & 1;
 %return val;
-14
-abcd
-0abc
+\newpage
+\noindent\textbf{练习题3.27分析}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long fact\_for\_guarded\_do(long n)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{long i = 2;}	\\
+	&	\multicolumn{3}{l}{long result = 1;}	\\
+	&	\multicolumn{3}{l}{ if (i $>$ n)  } 	\\
+	&	&	\multicolumn{2}{l}{goto done;} 	\\
+	\multicolumn{3}{l}{loop:} 	\\
+	&	&	\multicolumn{2}{l}{result *= i;}	\\
+	&	&	\multicolumn{2}{l}{i++;}	\\
+	&	\multicolumn{3}{l}{if (i $<=$ n)}	\\
+	&	&	\multicolumn{2}{l}{goto loop;} 	\\
+	\multicolumn{3}{l}{done:} 	\\
+	&	\multicolumn{3}{l}{return result;} 	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
 
-xxx(c^d)
-00ab
-
-xxx ((c^d)^b)
-000a
-
-xxx(((c^d)^b)^a)&1
-
-171
-ab
-10101011
-1001100 
 \end{CJK}
 \end{document}

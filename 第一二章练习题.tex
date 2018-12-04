@@ -927,7 +927,27 @@ long test(long x, long y)	\\
 \}	\\
 \end{tabular}
 \end{table}	\\
-\textbf{C. }该函数从x的最低位开始，与高一位求异或得到的值继续与更高一位求异或得到的值继续与更高一位求异或，直至最高非零位，得到的值与1取与后，返回。	\\
+\textbf{C. }该函数从x的最低位开始，与高一位求异或得到的值继续与更高一位求异或得到的值继续与更高一位求异或，直至最高非零位，得到的值与1取与后，返回。	\\[2ex]
+\textbf{练习题3.27}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long fact\_for\_guarded\_do(long n)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{long i = 2;}	\\
+	&	\multicolumn{3}{l}{long result = 1;}	\\
+	&	\multicolumn{3}{l}{ if (i $>$ n)  } 	\\
+	&	&	\multicolumn{2}{l}{goto done;} 	\\
+	\multicolumn{3}{l}{loop:} 	\\
+	&	&	\multicolumn{2}{l}{result *= i;}	\\
+	&	&	\multicolumn{2}{l}{i++;}	\\
+	&	\multicolumn{3}{l}{if (i $<=$ n)}	\\
+	&	&	\multicolumn{2}{l}{goto loop;} 	\\
+	\multicolumn{3}{l}{done:} 	\\
+	&	\multicolumn{3}{l}{return result;} 	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.28}	\\
 
 
 
