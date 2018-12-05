@@ -234,6 +234,25 @@ $1.0\times10^{ 20 }$	\\
 \}	\\
 \end{tabular}
 \end{table}	\\
+\textbf{练习题3.28分析}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{8em}l}
+	\multicolumn{3}{l}{\blue{ long fun\_b(unsigned long x) }}	\\
+	\multicolumn{3}{l}{\blue{ x in \%rdi }}	\\
+	\multicolumn{3}{l}{fun\_b:}	\\
+	&	movl	&	\$64, \%edx 	&	\blue{\%rdx = 64}	\\
+	&	movl	&	\$0, \%eax	&	\blue{\%rax = 0}	\\
+	\multicolumn{3}{l}{.L10:}	\\
+	&	movq	&	\%rdi, \%rcx 	&	\blue{\%rcx = x}	\\
+	&	andl	&	\$1, \%ecx 	&	\blue{x is odd ,\%ecx = 1 ; x is even,\%exc = 0}	\\
+	&	addq	&	\%rax, \%rax 	&	\blue{\%rax = \%rax + \%rax}	\\
+	&	orq	&	\%rcx, \%rax 	&	\blue{\%rax = \%rcx $|$ \%rax}	\\
+	&	shrq	&	\%rdi 	&	\blue{ Shift right by 1; x = x / 2 }	\\
+	&	subq	&	\$1, \%rdx 	&	\blue{\%rdx = \%rdx - 1}	\\
+	&	jne	&	.L10 	&	\blue{if \%rdx != 0,goto .L10}	\\
+	&	rep;	&	ret 	&	\blue{return \%rax}	\\
+\end{tabular}
+\end{table}	\\
 
 \end{CJK}
 \end{document}
