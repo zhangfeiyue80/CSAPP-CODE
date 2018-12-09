@@ -61,6 +61,25 @@ C语言大数定义	\\
 图灵机是对现实世界的高度抽象与建模，正因如此现代计算机的应用领域才会如此宽广，才能在各行各业具象化	\\
 \textbf{14)}	\\
 从汇编代码可以看出任何独立程序都有返回值\%rax	\\[2ex]
+\textbf{15)}	\\
+在计算机领域,由于信息在最底层，从物理上都是以二进制存储的，因经，结合二进制的信息特性与处理的位运算特性(与\&，或$|$，非！，异或\^{}),可以从二进制的处理上设计出一些十分高效的代码。	\\
+例如：	\\
+\newpage	
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long fun\_a(unsigned long x)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{long val = 0;}	\\
+	&	\multicolumn{3}{l}{ while (x != 0) \{ } 	\\
+	&	&	\multicolumn{2}{l}{val = val \^{} x;}	\\
+	&	&	\multicolumn{2}{l}{x = x $>>$ 1;}	\\
+	&	\multicolumn{3}{l}{ \} } 	\\
+	&	\multicolumn{3}{l}{val = val \& 1;} 	\\
+	&	\multicolumn{3}{l}{return val;} 	\\
+\}	\\
+\end{tabular}
+\end{table}	
+\noindent此函数统计参数x的二进制位表示中1的个数，若位表示中有奇数个1，则返回1；有偶数个1，则返回0。	\\[2ex]
 
 
 

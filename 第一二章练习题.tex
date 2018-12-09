@@ -927,7 +927,7 @@ long test(long x, long y)	\\
 \}	\\
 \end{tabular}
 \end{table}	\\
-\textbf{C. }该函数从x的最低位开始，与高一位求异或得到的值继续与更高一位求异或得到的值继续与更高一位求异或，直至最高非零位，得到的值与1取与后，返回。	\\[2ex]
+\textbf{C. }该函数统计参数x的二进制位表示中1的个数，若位表示中有奇数个1，则返回1；有偶数个1，则返回0。	\\[2ex]
 \textbf{练习题3.27}	\\[-3ex]
 \begin{table}[ht]
 \begin{tabular}{m{2em}m{2em}m{2em}l}
@@ -965,7 +965,11 @@ long test(long x, long y)	\\
 \end{tabular}
 \end{table}	\\
 \textbf{B. }	\\
-
+此段代码是用guarded-do翻译方法翻译的，因此原本应有初始测试，测试i!=0,但由于i被初始赋值为64,肯定不为零，因此编译器在优化编译时将此初始测试省略。	\\[1ex]
+\textbf{C. }	\\
+此函数将参数x的二进制位表示逆向排序后得出的十进制数返回。	\\[2ex]
+\textbf{练习题3.29}	\\
+\textbf{A. }
 
 
 
