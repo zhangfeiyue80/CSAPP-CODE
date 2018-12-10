@@ -968,8 +968,44 @@ long test(long x, long y)	\\
 此段代码是用guarded-do翻译方法翻译的，因此原本应有初始测试，测试i!=0,但由于i被初始赋值为64,肯定不为零，因此编译器在优化编译时将此初始测试省略。	\\[1ex]
 \textbf{C. }	\\
 此函数将参数x的二进制位表示逆向排序后得出的十进制数返回。	\\[2ex]
-\textbf{练习题3.29}	\\
-\textbf{A. }
+\newpage
+\noindent\textbf{练习题3.29}	\\[1ex]
+\textbf{A. }直接应用将for循环翻译到while循环的规则，得到如下代码：	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long sum = 0;}	\\
+	\multicolumn{3}{l}{long i;}	\\
+	\multicolumn{3}{l}{i = 0;}	\\
+	\multicolumn{3}{l}{while(i $<$ 10)}	\\
+	\multicolumn{3}{l}{\{}	\\
+	&	\multicolumn{2}{l}{if(i \& 1)}	\\
+	&	&	continue;	\\
+	&	\multicolumn{2}{l}{sum += 1;}	\\
+	&	\multicolumn{2}{l}{i++;}	\\
+	\multicolumn{3}{l}{\}}	\\
+\end{tabular}
+\end{table}	\\[-2ex]
+可以看到所产生的代码当执行到continue时，会跳过i自增的操作，因此此段代码循环部分永远不会结束，程序会陷入一个死循环中，与for循环产生了完全不同的运行行为，可见直接应用将for循环翻译到while循环的规则来翻译这段代码是不可行的。	\\[1ex]
+\textbf{B. }	\\[1ex]
+用goto语句代替continue语句，可以以此来保证翻译的准确性,以此原理翻译上述代码得到如下结果:	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long sum = 0;}	\\
+	\multicolumn{3}{l}{long i;}	\\
+	\multicolumn{3}{l}{i = 0;}	\\
+	\multicolumn{3}{l}{while(i $<$ 10)}	\\
+	\multicolumn{3}{l}{\{}	\\
+	&	\multicolumn{2}{l}{if(i \& 1)}	\\
+	&	&	\multicolumn{2}{l}{ goto loop\_end; }	\\
+	&	\multicolumn{2}{l}{sum += 1;}	\\
+	\multicolumn{3}{l}{\hspace{1.5em}loop\_end:}	\\
+	&	\multicolumn{2}{l}{i++;}	\\
+	\multicolumn{3}{l}{\}}	\\
+\end{tabular}
+\end{table}	\\[-2ex]
+
+
+
 
 
 
