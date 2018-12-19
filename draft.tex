@@ -289,5 +289,20 @@ $1.0\times10^{ 20 }$	\\
 \end{tabular}
 \end{table}	\\
 
+\newpage
+\noindent\textbf{练习题3.30分析}	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{8em}l}
+	\multicolumn{3}{l}{\blue{ void switch2(long x,long *dest) }}	\\
+	\multicolumn{3}{l}{\blue{x in \%rdi}}	\\
+	\multicolumn{3}{l}{switch2:}	\\
+	&	addq	&	\$1, \%rdi	&	\blue{ x=x+1 }	\\
+	&	cmpq	&	\$8, \%rdi	&	\blue{x-8}	\\
+	&	ja	&	.L2		&	\blue{\blue{x-8$>$0, 无符号大于,goto .L2}}	\\
+	&	jmp	&	*.L4(,\%rdi,8)	&	\blue{goto .L4+8x}	\\
+\end{tabular}
+\end{table}	\\
+
+
 \end{CJK}
 \end{document}
