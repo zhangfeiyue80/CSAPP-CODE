@@ -1,10 +1,21 @@
 #include <stdio.h>
 typedef unsigned char *byte_pointer;
+
+// 为大端法机器输出字节，结果会以自然语言的习惯显示字节
 void show_bytes(byte_pointer start, size_t len) 
 {
 	size_t i;
 	for (i=0;i<len;i++)
 		printf(" %.2x",start[i]);
+	printf("\n");
+}
+
+// 为大端法机器输出字节，结果会以自然语言的习惯显示字节
+void little_endian_show_bytes(byte_pointer start, size_t len) 
+{
+	size_t i;
+	for (i=len;i>0;i--)
+		printf(" %.2x",start[i-1]);
 	printf("\n");
 }
 
