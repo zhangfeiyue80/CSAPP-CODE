@@ -1,0 +1,308 @@
+\documentclass{article}
+\usepackage{CJKutf8}
+\usepackage{color}
+\usepackage{array}
+\usepackage[margin=1cm,top=1cm,bottom=1.5cm]{geometry}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\begin{document}
+\begin{CJK}{UTF8}{gkai}
+\end{CJK}
+\begin{CJK}{UTF8}{gbsn}
+\textcolor[rgb]{1,0,0}{\begin{math} \end{math} \begin{math}			\end{math}}
+\begin{math}			
+	\vec{L}=\vec{r}\times m \vec{v}
+\end{math}\\[0.1cm]
+
+\begin{math}
+	\frac{d \vec{L}}{dt}
+	=\frac{d \vec{r}}{dt}\times{}m \vec{v}+\vec{r}\times{}m \frac{d \vec{v}}{dt}
+	=\vec{v}\times{}m \vec{v}+\vec{r}\times{}m \vec{a}
+	=\vec{r}\times{}m \vec{a}
+	=\vec{r}\times{}\vec{F}
+\end{math}\\[0.1cm]
+\begin{math}	
+	\lceil x/y\rceil=\lfloor (x+y-1)/y\rfloor	\\
+	\lceil x/y\rceil-1<x/y\le \lceil x/y\rceil	\\
+	\lfloor (x+y-1)/y \rfloor\le (x+y-1)/y<\lfloor (x+y-1)/y \rfloor+1	\\
+\end{math}
+证明: $x/y+1-1/y>\lceil x/y\rceil$	\\
+$\left( x/y-\lceil x/y\rceil+1 \right)_{min}=(x/y-\lfloor x/y\rfloor)_{min}=1/y$	\\
+$x/y-1/y+1\ge\lfloor x/y\rfloor+1=\lceil x/y\rceil$	\\
+$x/y-1/y+1\ge\lfloor x/y-1/y+1\rfloor$	\\
+$\lceil x/y\rceil=\lfloor x/y-1/y+1\rfloor$	\\[3ex]
+x/16	\\
+$x\ge0$	,$x>>4$	\\
+$x<0$,$(x+(1<<4)-1)>>4$	\\
+posi\_neg(x),正数返回0,负数返回1	\\
+$x/16=(x+((1<<4)-1)*post\_neg(x))>>4=(x+((1<<4)-1)\&(x>>32))>>4$	\\
+$x*0=x<<32$	\\
+$x*1=x>>0$
+位与运算
+位或运算	\\[3ex]
+\begin{math}
+	n!=n*(n-1)*(n-2)*\cdots*3*2*1	\\
+	(n!)^{'}=(n-1)*(n-2)*\cdots*3*2*1+n\left( (n-1)*(n-2)*\cdots*3*2*1 \right )^{'}	\\
+	2^n=n*2^{n-1}
+\end{math}	\\[3ex]
+\begin{math}
+	E=e-bias	\\
+	bias=2^{k-1}-1	\\
+	E=e-2^{k-1}+1	\\
+	=2^{k-1}+2^{k-1}-2-2^{k-1}+1	\\
+	=2^{k-1}-1
+\end{math}	\\
+$0111.1_2=1.111_{2}\times 2^2$	\\
+bias=7	\\
+1001	\\
+1001 111	\\[2ex]
+$M=1+2^(-1)+2^(-4)=25/16$	\\
+$E=2-3=-1$	\\
+$\frac{25}{16}*2^{-1}=\frac{25}{32}$	\\
+$25/32=0.11001_2=1.1001_2*2^{-1}$	\\
+$0110\ 1001_2\approx 0110\ 100_2$	\\
+M=3/2	\\
+E=6-7=-1	\\
+$\frac{3}{2}*2^{-1}=\frac{3}{4}$	\\
+$M=1+2^{-1}+2^{-2}+2^{-3}+2^{-4}=1-2^{-4}=\frac{15}{16}$	\\
+$E=6-3=3$	\\
+$\frac{15}{16}*2^3=\frac{15}{2}$	\\
+$111.1_2=1.111*2^2$	\\
+1001 111,M=1/16,E=1-3=-2	\\
+$\frac{1}{16}*2^{-2}=\frac{1}{64}$	\\
+$0.000001=1.0*2^{-6}$	\\
+0001 000	\\
+$x=a_{31}a_{30}a_{29}a_{28}a_{27}a_{26}a_{25}a_{24}a_{23}a_{22}a_{21}a_{20}a_{19}a_{18}a_{17}a_{16}a_{15}a_{14}a_{13}a_{12}a_{11}a_{10}a_{9}a_{8}a_{7}a_{6}a_{5}a_{4}a_{3}a_{2}a_{1}a_{0}$	\\
+$x=a_{31}.a_{30}a_{29}a_{28}a_{27}a_{26}a_{25}a_{24}a_{23}a_{22}a_{21}a_{20}a_{19}a_{18}a_{17}a_{16}a_{15}a_{14}a_{13}a_{12}a_{11}a_{10}a_{9}a_{8}a_{7}a_{6}a_{5}a_{4}a_{3}a_{2}a_{1}a_{0}*2^{31}$	\\
+$1.0\times10^{ 20 }$	\\
+%	45w
+%	120w
+%	ec 78 ad 60
+%1	110 1100 0	111 1000 1010 1101 0110 0000
+%1	110 1100 0000	111 1000 1010 1101 0110 0000  0000 0000 0000 0000 0000 0000 0000 0
+%	100000002004087734272.000000
+%	00 00 c8 42
+%	0000 0000 0000 0000 1100 1000 0100 0010
+%	0	1000 0100 	0010 0110 0000 0000 0000 000
+%	1*10^(128+4-127)=10 0000
+%	0 1000 0101	 1001 0000 0000 0000 0000 000
+%	1.1001*10^(128-127+5)
+%	0 	0111 1111 	0000 0000 0000 0000 0000 000
+%	0011 1111 1000 0000 0000 0000 0000 0000
+%	00 00 80 3f
+%	3f 80 00 00
+%	0 	0111 1111 	0000 0000 0000 0000 0000 000
+%	ec 78 ad 60
+%	60 ad 78 ec
+%	0110 0000 1010 1101 0111 1000 1110 1100
+
+
+
+%	0	1100 0001	 0101 1010 1111 0001 1101 100
+%	1*2^(128-127+64+1)=2^66
+
+%	0	100 0100 0001	0101 1010 1111 0001 1101 1000 0000 0000 0000 0000 0000 0000 0000
+%	0	011 1111 1111	0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
+%	0	000 0100 0000
+
+
+
+%	00 00 00 80 1d af 15 44
+
+%	44 15 af 1d 80 00 00 00
+%	44 15 af 1d 80 00 00 00
+
+%	0100 0100 0001 0101 1010 1111 0001 1101 1000 0000 0000 0000 0000 0000 0000 0000
+%	0	100 0100 0001 	0101 1010 1111 0001 1101 1000 0000 0000 0000 0000 0000 0000 0000
+
+%	1.0101 1010 1111 0001 1101 1000 0000 0000 0000 0000 0000 0000 0000*2^66
+%	9+0x100+0x3=0x10C
+%	260+0x1+0x3=0x104+0x1+0x3=0x108
+%	0xFC+0x1*4=0xFC+0x4=0x100
+%	0x100+0x3*4=0x100+0xC=0x10C
+%	0x1+0xFF=0x100
+%	0x108
+%	0xAB-0x3=0xA8
+%	0x3
+%	0x100+0x3*8=0x100+0x18=0x118
+%	0x11*16=0x10+0x10*16=0x10+0x100=0x110
+%	0x100+0x10=0x110
+%	0x1
+%	0x100-0x3=0xFD
+
+%	11100
+%	11000
+%	00100
+%	400431+f4=400425
+%	ff 73
+%	ff 73
+%	4005ed
+%	4
+
+%	2016
+%	f0
+%	2006
+
+%	2016
+%	70
+%	2086
+
+%1111 0100
+%1 0100
+%-16+4=-12
+%0400431
+%ffffff4
+%0400425
+
+%ff ff ff 73
+%00 40 05 ed
+%00 40 05 60
+%\noindent\begin{table}[htbp]
+\newpage
+\textbf{练习题3.21分析}	\\
+\begin{table}[ht]
+\begin{tabular}{m{1em}m{3em}m{12em}l}
+		&	\multicolumn{2}{l}{\blue{long test(long x, long y)}}	&	\\
+		&	\multicolumn{2}{l}{\blue{x in \%rdi, y in \%rsi}}	&	\\
+	test:	\\
+	&	leaq	&	0(,\%rdi,8), \%rax				&	\blue{\%rax=8*x}	\\
+	&	testq	&	\%rsi, \%rsi					&	\blue{y \& y}	\\
+		&	jle	&	.L2					&	\blue{y $<=$ 0, goto .L2}\\
+		&	movq	&	\%rsi, \%rax				&	\blue{\%rsi $>$ 0, \%rax = y}\\
+		&	subq	&	\%rdi, \%rax				&	\blue{\%rax = y - x}\\
+		&	movq	&	\%rdi, \%rdx				&	\blue{\%rdx = x}\\
+		&	andq	&	\%rsi, \%rdx				&	\blue{\%rdx = x \& y}\\
+		&	cmpq	&	\%rsi, \%rdi				&	\blue{x - y}	\\
+		&	cmovge	&	\%rdx, \%rax				&	\blue{(x -y) $>=$ 0, \%rax = x \& y}	\\
+		&	ret	&						&	\blue{return \%rax}	\\
+	.L2:	\\
+	&	addq	&	\%rsi, \%rdi					&	\blue{\%rdi = x + y}	\\
+	&	cmpq	&	\$-2, \%rsi					&	\blue{y + 2}\\
+	&	cmovle	&	\%rdi, \%rax					&	\blue{(y + 2) $<=$ 0, \%rax = x + y}	\\
+	&	ret	&							&	\blue{return \%rax}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.23分析}	\\
+\begin{table}[ht]
+\begin{tabular}{m{1em}m{3em}m{12em}l}
+		&	\multicolumn{2}{l}{\blue{long dw\_loop(long x)}}	&	\\
+		&	\multicolumn{2}{l}{\blue{x initially in \%rdi}}	&	\\
+	dw\_loop:	\\
+	&	movq	&	\%rdi, \%rax	&	\blue{\%rax = x}	\\
+	&	movq	&	\%rdi, \%rcx	&	\blue{\%rcx = x}	\\
+	&	imulq	&	\%rdi, \%rcx	&	\blue{\%rcx = x*x}	\\
+	&	leaq	&	(\%rdi, \%rdi), \%rdx	&	\blue{\%rdx = 2*x}	\\
+	.L2:	\\
+	&	leaq	&	1(\%rcx, \%rax), \%rax	&	\blue{\%rax = 1 + $x^2$ + x}	\\
+	&	subq	&	\$1, \%rdx		&	\blue{\%rdx = 2*x - 1}	\\
+	&	testq	&	\%rdx, \%rdx		&	\blue{( 2*x-1 ) \& ( 2*x-1 )}	\\
+	&	jg	&	.L2			&	\blue{( 2*x-1 )$>$0, goto .L2; ( 2*x-1 )$<=0$; return \%rax }	\\
+	&	rep;	&	ret			&	\blue{}	\\
+\end{tabular}
+\end{table}	\\
+% %rdx = %rdi+b
+% %rax = %rax * ( %rdi+b )
+% %rdi = %rdi+1
+
+% %rax = %rax*a
+% %rsi = %rsi - a
+% while( %rsi>0 )
+
+%while(x != 0)
+%{
+%	val = val ^ x;
+%	x = x >> 1;
+%}
+%val = val & 1;
+%return val;
+\newpage
+\noindent\textbf{练习题3.27分析}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long fact\_for\_guarded\_do(long n)}	\\
+\{	\\
+	&	\multicolumn{3}{l}{long i = 2;}	\\
+	&	\multicolumn{3}{l}{long result = 1;}	\\
+	&	\multicolumn{3}{l}{ if (i $>$ n)  } 	\\
+	&	&	\multicolumn{2}{l}{goto done;} 	\\
+	\multicolumn{3}{l}{loop:} 	\\
+	&	&	\multicolumn{2}{l}{result *= i;}	\\
+	&	&	\multicolumn{2}{l}{i++;}	\\
+	&	\multicolumn{3}{l}{if (i $<=$ n)}	\\
+	&	&	\multicolumn{2}{l}{goto loop;} 	\\
+	\multicolumn{3}{l}{done:} 	\\
+	&	\multicolumn{3}{l}{return result;} 	\\
+\}	\\
+\end{tabular}
+\end{table}	\\
+\textbf{练习题3.28分析}	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{8em}l}
+	\multicolumn{3}{l}{\blue{ long fun\_b(unsigned long x) }}	\\
+	\multicolumn{3}{l}{\blue{ x in \%rdi, i in \%rdx }}	\\
+	\multicolumn{3}{l}{fun\_b:}	\\
+	&	movl	&	\$64, \%edx 	&	\blue{i = 64}	\\
+	&	movl	&	\$0, \%eax	&	\blue{val = 0}	\\
+	\multicolumn{3}{l}{.L10:}	\\
+	&	movq	&	\%rdi, \%rcx 	&	\blue{\%rcx = x}	\\
+	&	andl	&	\$1, \%ecx 	&	\blue{x is odd ,\%ecx = 1 ; x is even,\%ecx = 0}	\\
+	&	addq	&	\%rax, \%rax 	&	\blue{val = 2*val}	\\
+	&	orq	&	\%rcx, \%rax 	&	\blue{val = \%rcx $|$ val}	\\
+	&	shrq	&	\%rdi 	&	\blue{ Shift right by 1; x = x / 2 }	\\
+	&	subq	&	\$1, \%rdx 	&	\blue{i = i - 1}	\\
+	&	jne	&	.L10 	&	\blue{if i != 0,goto .L10}	\\
+	&	rep;	&	ret 	&	\blue{return \%rax}	\\
+\end{tabular}
+\end{table}	\\
+% %rcx=x&1
+% val=2*val
+% val=(x&1)|(2*val)
+% x=x/2
+% i--
+
+% i	64,		63,		62,
+% val	x1(二进制末位),	2*x1|x2,	2*(2*x1|x2)|x3
+% 0011010001
+%   0100111 
+
+% 0010000000
+% 1
+
+% 0010000001
+% 0
+
+% 0010000011
+% 1
+\noindent\textbf{练习题3.29分析}	\\
+\textbf{A. }	\\[-3ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{2em}l}
+	\multicolumn{3}{l}{long sum = 0;}	\\
+	\multicolumn{3}{l}{long i;}	\\
+	\multicolumn{3}{l}{i = 0;}	\\
+	\multicolumn{3}{l}{while(i $<$ 10)}	\\
+	\multicolumn{3}{l}{\{}	\\
+	&	\multicolumn{2}{l}{if(i \& 1)}	\\
+	&	&	continue;	\\
+	&	\multicolumn{2}{l}{sum += 1;}	\\
+	&	\multicolumn{2}{l}{i++;}	\\
+	\multicolumn{3}{l}{\}}	\\
+\end{tabular}
+\end{table}	\\
+
+\newpage
+\noindent\textbf{练习题3.30分析}	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{8em}l}
+	\multicolumn{3}{l}{\blue{ void switch2(long x,long *dest) }}	\\
+	\multicolumn{3}{l}{\blue{x in \%rdi}}	\\
+	\multicolumn{3}{l}{switch2:}	\\
+	&	addq	&	\$1, \%rdi	&	\blue{ x=x+1 }	\\
+	&	cmpq	&	\$8, \%rdi	&	\blue{x-8}	\\
+	&	ja	&	.L2		&	\blue{\blue{x-8$>$0, 无符号大于,goto .L2}}	\\
+	&	jmp	&	*.L4(,\%rdi,8)	&	\blue{goto .L4+8x}	\\
+\end{tabular}
+\end{table}	\\
+
+
+\end{CJK}
+\end{document}
