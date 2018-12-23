@@ -1005,10 +1005,38 @@ long test(long x, long y)	\\
 \end{table}	\\[-1ex]
 \textbf{练习题3.30}	\\
 \textbf{A. }	\\
-
-switch语句内情况标号的值分别为
-
-
+switch语句内情况标号的值分别为0,1,2,3,4,5,6,7,8	\\
+\textbf{B. }	\\
+在c代码中多个标号是同种情况有以下情形:	\\
+1)default,除给定的情况外，其它所有值都归为此类情况	\\
+2)给定值后，没有操作，也没有break，会继续执行后面的case情形，此情形就与后面case情形成为了一种情况	\\[2ex]
+\newpage
+\noindent\textbf{练习题3.31}	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{2em}m{8em}l}
+	\multicolumn{3}{l}{void switcher(long a, long b, long c, long *dest)}	\\
+	\multicolumn{3}{l}{\{}	\\
+	&	\multicolumn{2}{l}{long val;}	\\
+	&	\multicolumn{2}{l}{switch(a) \{}	\\
+	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case A */}	\\
+	&	&	c = \underline{\hspace{4em}};	&	\blue{/* Fall through */}	\\
+	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case B */}	\\
+	&	&	val = \underline{\hspace{4em}};	\\
+	&	&	break;	\\
+	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case C */}	\\
+	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case D */}	\\
+	&	&	val = \underline{\hspace{4em}};	\\
+	&	&	break;	\\
+	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case E */}	\\
+	&	&	val = \underline{\hspace{4em}};	\\
+	&	&	break;	\\
+	&	\multicolumn{2}{l}{default:}	\\
+	&	&	val = \underline{\hspace{4em}};	\\
+	&	\multicolumn{2}{l}{\}}	\\
+	&	\multicolumn{2}{l}{*dest = val;}	\\
+	\multicolumn{3}{l}{\}}	\\
+\end{tabular}
+\end{table}	\\[-1ex]
 
 
 
