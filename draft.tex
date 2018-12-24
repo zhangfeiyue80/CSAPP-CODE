@@ -301,7 +301,34 @@ $1.0\times10^{ 20 }$	\\
 	&	ja	&	.L2		&	\blue{\blue{x-8$>$0, 无符号大于,goto .L2}}	\\
 	&	jmp	&	*.L4(,\%rdi,8)	&	\blue{goto .L4+8x}	\\
 \end{tabular}
-\end{table}	\\
+\end{table}	\\[-2ex]
+\textbf{练习题3.31分析}	\\[-4ex]
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{3em}m{8em}l}
+	\multicolumn{3}{l}{\blue{void switcher(long a, long b, long c, long *dest)}}	\\
+	\multicolumn{3}{l}{\blue{a in \%rdi, b in \%rsi, c in \%rdx, dest in \%rcx}}	\\
+	\multicolumn{3}{l}{switcher:}	\\
+	&	cmpq		&	\$7, \%rdi	&	\blue{\%rdi -- 7}	\\
+	&	ja		&	.L2		&	\blue{}	\\
+	&	jmp		&	*.L4(,\%rdi,8)	&	\blue{}	\\
+	&	.section	&	.rodata		&	\blue{}	\\
+.L7:	&			&			&	\blue{}	\\
+	&	xorq		&	\$15, \%rsi	&	\blue{}	\\
+	&	movq		&	\%rsi, \%rdx	&	\blue{}	\\
+.L3:	&			&			&	\blue{}	\\
+	&	leaq		&	112(\%rdx), \%rdi		&	\blue{}	\\
+	&	jmp		&	.L6		&	\blue{}	\\
+.L5:	&			&			&	\blue{}	\\
+	&	leaq		&	(\%rdx,\%rsi), \%rdi		&	\blue{}	\\
+	&	salq		&	\$2, \%rdi	&	\blue{}	\\
+	&	jmp		&	.L6		&	\blue{}	\\
+.L2:	&			&			&	\blue{}	\\
+	&	movq		&	\%rsi, \%rdi	&	\blue{}	\\
+.L6:	&			&			&	\blue{}	\\
+	&	movq		&	\%rdi, (\%rcx)	&	\blue{}	\\
+	&	ret		&			&	\blue{}	\\
+\end{tabular}
+\end{table}	\\[-2ex]
 
 
 \end{CJK}
