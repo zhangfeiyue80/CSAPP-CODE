@@ -309,8 +309,8 @@ $1.0\times10^{ 20 }$	\\
 	\multicolumn{3}{l}{\blue{a in \%rdi, b in \%rsi, c in \%rdx, dest in \%rcx}}	\\
 	\multicolumn{3}{l}{switcher:}	\\
 	&	cmpq		&	\$7, \%rdi	&	\blue{\%rdi -- 7}	\\
-	&	ja		&	.L2		&	\blue{}	\\
-	&	jmp		&	*.L4(,\%rdi,8)	&	\blue{}	\\
+	&	ja		&	.L2		&	\blue{\%rdi -- 7 $>$ 0}	\\
+	&	jmp		&	*.L4(,\%rdi,8)	&	\blue{goto *.L4+8*\%rdi}	\\
 	&	.section	&	.rodata		&	\blue{}	\\
 .L7:	&			&			&	\blue{}	\\
 	&	xorq		&	\$15, \%rsi	&	\blue{}	\\
