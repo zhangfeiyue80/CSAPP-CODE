@@ -1018,20 +1018,20 @@ switch语句内情况标号的值分别为0,1,2,3,4,5,6,7,8	\\
 	\multicolumn{3}{l}{\{}	\\
 	&	\multicolumn{2}{l}{long val;}	\\
 	&	\multicolumn{2}{l}{switch(a) \{}	\\
-	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case A */}	\\
-	&	&	c = \underline{\hspace{4em}};	&	\blue{/* Fall through */}	\\
-	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case B */}	\\
-	&	&	val = \underline{\hspace{4em}};	\\
+	&	\multicolumn{2}{l}{case \underline{ 5 }:}	&	\blue{/* Case A */}	\\
+	&	&	c = \underline{b\^{}15};	&	\blue{/* Fall through */}	\\
+	&	\multicolumn{2}{l}{case \underline{ 0 }:}	&	\blue{/* Case B */}	\\
+	&	&	val = \underline{ 112 + c };	\\
 	&	&	break;	\\
-	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case C */}	\\
-	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case D */}	\\
-	&	&	val = \underline{\hspace{4em}};	\\
+	&	\multicolumn{2}{l}{case \underline{ 2 }:}	&	\blue{/* Case C */}	\\
+	&	\multicolumn{2}{l}{case \underline{ 7 }:}	&	\blue{/* Case D */}	\\
+	&	&	val = \underline{ 4( b+c ) };	\\
 	&	&	break;	\\
-	&	\multicolumn{2}{l}{case \underline{\hspace{4em}}:}	&	\blue{/* Case E */}	\\
-	&	&	val = \underline{\hspace{4em}};	\\
+	&	\multicolumn{2}{l}{case \underline{ 4 }:}	&	\blue{/* Case E */}	\\
+	&	&	val = \underline{ a };	\\
 	&	&	break;	\\
 	&	\multicolumn{2}{l}{default:}	\\
-	&	&	val = \underline{\hspace{4em}};	\\
+	&	&	val = \underline{ b };	\\
 	&	\multicolumn{2}{l}{\}}	\\
 	&	\multicolumn{2}{l}{*dest = val;}	\\
 	\multicolumn{3}{l}{\}}	\\

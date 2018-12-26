@@ -4,6 +4,7 @@
 \usepackage{array}
 \usepackage[margin=1cm,top=1cm,bottom=1.5cm]{geometry}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 \begin{document}
 \begin{CJK}{UTF8}{gkai}
 \end{CJK}
@@ -308,28 +309,57 @@ $1.0\times10^{ 20 }$	\\
 	\multicolumn{3}{l}{\blue{void switcher(long a, long b, long c, long *dest)}}	\\
 	\multicolumn{3}{l}{\blue{a in \%rdi, b in \%rsi, c in \%rdx, dest in \%rcx}}	\\
 	\multicolumn{3}{l}{switcher:}	\\
-	&	cmpq		&	\$7, \%rdi	&	\blue{\%rdi -- 7}	\\
-	&	ja		&	.L2		&	\blue{\%rdi -- 7 $>$ 0}	\\
-	&	jmp		&	*.L4(,\%rdi,8)	&	\blue{goto *.L4+8*\%rdi}	\\
+	&	cmpq		&	\$7, \%rdi	&	\blue{a -- 7}	\\
+	&	ja		&	.L2		&	\blue{a -- 7 $>$ 0, unsigned a $>$ 7, long a $<$ 0 or a $>$ 7}	\\
+	&	jmp		&	*.L4(,\%rdi,8)	&	\blue{goto *.L4+8*a}	\\
 	&	.section	&	.rodata		&	\blue{}	\\
 .L7:	&			&			&	\blue{}	\\
-	&	xorq		&	\$15, \%rsi	&	\blue{}	\\
-	&	movq		&	\%rsi, \%rdx	&	\blue{}	\\
+&	xorq		&	\$15, \%rsi	&	\blue{b = b\^{}15}	\\
+	&	movq		&	\%rsi, \%rdx	&	\blue{c = b}	\\
 .L3:	&			&			&	\blue{}	\\
-	&	leaq		&	112(\%rdx), \%rdi		&	\blue{}	\\
-	&	jmp		&	.L6		&	\blue{}	\\
+	&	leaq		&	112(\%rdx), \%rdi		&	\blue{a = 112 + c}	\\
+	&	jmp		&	.L6		&	\blue{goto .L6}	\\
 .L5:	&			&			&	\blue{}	\\
-	&	leaq		&	(\%rdx,\%rsi), \%rdi		&	\blue{}	\\
-	&	salq		&	\$2, \%rdi	&	\blue{}	\\
-	&	jmp		&	.L6		&	\blue{}	\\
+	&	leaq		&	(\%rdx,\%rsi), \%rdi		&	\blue{a = c + b}	\\
+	&	salq		&	\$2, \%rdi	&	\blue{a = a*4}	\\
+	&	jmp		&	.L6		&	\blue{goto .L6}	\\
 .L2:	&			&			&	\blue{}	\\
-	&	movq		&	\%rsi, \%rdi	&	\blue{}	\\
+	&	movq		&	\%rsi, \%rdi	&	\blue{a = b}	\\
 .L6:	&			&			&	\blue{}	\\
-	&	movq		&	\%rdi, (\%rcx)	&	\blue{}	\\
-	&	ret		&			&	\blue{}	\\
+	&	movq		&	\%rdi, (\%rcx)	&	\blue{*dest = a}	\\
+	&	ret		&			&	\blue{return \%rax}	\\
 \end{tabular}
 \end{table}	\\[-2ex]
-
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{3em}m{8em}l}
+.L4:	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L3	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L5	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L6	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L7	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L5	\\
+\end{tabular}
+\end{table}	\\[-2ex]
+.L2 1,3,6	\\
+.L5 2,7		\\
+\red{ 0 },\red{ 1 },\red{ 2 },\red{ 3 },4,\red{ 5 },\red{ 6 },\red{ 7 }
+\newpage
+\begin{table}[ht]
+\begin{tabular}{m{2em}m{3em}m{8em}l}
+.L4:	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L2	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L3	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L5	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L5	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L6	\\
+	&	\multicolumn{2}{l}{.quad}	&	.L7	\\
+\end{tabular}
+\end{table}	
 
 \end{CJK}
 \end{document}
