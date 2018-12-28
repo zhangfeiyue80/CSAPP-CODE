@@ -1037,7 +1037,36 @@ switch语句内情况标号的值分别为0,1,2,3,4,5,6,7,8	\\
 	\multicolumn{3}{l}{\}}	\\
 \end{tabular}
 \end{table}	\\[-1ex]
-
+\textbf{练习题3.32}	\\[-4ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{3em}<{\centering}|m{8em}<{\centering}|m{3em}<{\centering}|m{4em}<{\centering}|m{4em}<{\centering}|m{4em}<{\centering}|m{8em}<{\centering}|m{4em}<{\centering}|m{8em}<{\centering}|}
+\hline
+\multicolumn{3}{|c}{指令}	&	\multicolumn{6}{|c|}{状态值(指令执行前)}	\\
+\hline
+标号	&	PC	&	指令	&	\%rdi	&	\%rsi	&	\%rax	&	\%rsp	&	* \%rsp	&	描述	\\
+\hline
+M1	&	0x400560	&	callq	&	10	&	---	&	---	&	0x7fffffffe820	&	---	&	调用 first(10)	\\
+\hline
+F1	&		&		&		&		&		&		&		&		\\
+\hline
+F2	&		&		&		&		&		&		&		&		\\
+\hline
+F3	&		&		&		&		&		&		&		&		\\
+\hline
+L1	&		&		&		&		&		&		&		&		\\
+\hline
+L2	&		&		&		&		&		&		&		&		\\
+\hline
+L3	&		&		&		&		&		&		&		&		\\
+\hline
+F4	&		&		&		&		&		&		&		&		\\
+\hline
+M2	&		&		&		&		&		&		&		&		\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
 
 
 
