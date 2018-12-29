@@ -1049,21 +1049,21 @@ switch语句内情况标号的值分别为0,1,2,3,4,5,6,7,8	\\
 \hline
 M1	&	0x400560	&	callq	&	10	&	---	&	---	&	0x7fffffffe820	&	---	&	调用 first(10)	\\
 \hline
-F1	&		&		&		&		&		&		&		&		\\
+F1	&	0x400548	&	lea	&	10	&	---	&	---	&	0x7fffffffe818	&	0x400565	&	进入first	\\
 \hline
-F2	&		&		&		&		&		&		&		&		\\
+F2	&	0x40054c	&	sub	&	10	&	11	&	---	&	0x7fffffffe818	&	0x400565	&	执行first	\\
 \hline
-F3	&		&		&		&		&		&		&		&		\\
+F3	&	0x400550	&	callq	&	10	&	11	&	---	&	0x7fffffffe818	&	0x400565	&	调用last(10,11)	\\
 \hline
-L1	&		&		&		&		&		&		&		&		\\
+L1	&	0x400540	&	mov	&	10	&	11	&	---	&	0x7fffffffe816	&	0x400555	&	进入last	\\
 \hline
-L2	&		&		&		&		&		&		&		&		\\
+L2	&	0x400543	&	imul	&	10	&	11	&	10	&	0x7fffffffe816	&	0x400555	&	执行last	\\
 \hline
-L3	&		&		&		&		&		&		&		&		\\
+L3	&	0x400547	&	retq	&	10	&	11	&	110	&	0x7fffffffe816	&	0x400555	&	从last返回110	\\
 \hline
-F4	&		&		&		&		&		&		&		&		\\
+F4	&	0x400555	&	repz pretq	&	10	&	11	&	110	&	0x7fffffffe818	&	0x400565	&	从first返回110	\\
 \hline
-M2	&		&		&		&		&		&		&		&		\\
+M2	&	0x400565	&	mov	&	10	&	11	&	110	&	0x7fffffffe820	&	---	&	继续main	\\
 \hline
 \end{tabular}
 \end{table}	\\[2ex]
