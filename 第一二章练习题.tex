@@ -1067,6 +1067,73 @@ M2	&	0x400565	&	mov	&	10	&	11	&	110	&	0x7fffffffe820	&	---	&	继续main	\\
 \hline
 \end{tabular}
 \end{table}	\\[2ex]
+\textbf{练习题3.33}	\\
+\textbf{1)} 4个参数合法顺序:a,b,u,v	\\
+int a	\\
+long *u	\\
+short b	\\
+char *v	\\
+procprob(int a,short b,long *u,char *v)	\\
+\textbf{2)} 当汇编代码按相反顺序执行两个加法运算时，此汇编代码同样合法，此时a和b，u和v会调换位置，得到如下函数原型
+procprob(int b,short a,long *v,char *u)	\\[3ex]
+\textbf{练习题3.34}	\\
+\textbf{A.}	\\
+x,x+1,x+2,x+3,x+4,x+5存储在被调用者保存寄存器中	\\
+\textbf{B.}	\\
+x+6,x+7存储在栈上	\\
+\textbf{C.}	\\
+在存储完$a_0$到$a_5$到被调用者保存寄存器中后，这个程序用完了所有被调用者保存寄存器，只能将$a_6$,$a_7$存储到栈中	\\[3ex]
+\textbf{练习题3.35}	\\
+\textbf{A.} \%rbx中的值是参数x	\\
+\textbf{B.}	\\
+long rfun(unsigned long x) \{	\\
+	\hspace*{2em}if (\underline{\blue{x == 0}})	\\
+	\hspace*{4em}return {\underline{\blue{0}}};	\\
+		\hspace*{2em}unsinged long nx = \underline{\blue{ x / 4 }};	\\
+		\hspace*{2em}long rv = rfun(nx);	\\
+		\hspace*{2em}return \underline{\blue{ rv + x }};	\\
+\noindent\}	\\[2em]
+\textbf{练习题3.36}	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{6em}<{\centering}|m{6em}<{\centering}|m{12em}<{\centering}|m{6em}<{\centering}|m{12em}<{\centering}|}
+\hline
+数组	&	元素大小	&	整个数组的大小	&	起始地址	&	元素i	\\
+\hline
+S	&	2		&	14		&	$x_S$		&	$x_S+2i$	\\
+\hline
+T	&	8		&	24		&	$x_T$		&	$x_T+8i$	\\
+\hline
+U	&	8		&	48		&	$x_U$		&	$x_U+8i$	\\
+\hline
+V	&	4		&	32		&	$x_V$		&	$x_V+4i$	\\
+\hline
+W	&	8		&	32		&	$x_W$		&	$x_W+8i$	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{练习题3.37}	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{12em}<{\centering}|m{12em}<{\centering}|m{12em}<{\centering}|m{14em}<{\centering}|}
+\hline
+表达式		&	类型	&	值		&	汇编代码	\\
+\hline
+S + 1		&	short*	&	$x_S+2$		&	leaq (\%rdx,\%rcx,2),\%rax	\\
+\hline
+S[3]		&	short	&	$M[x_S+6]$	&	movw (\%rdx,\%rcx,2),\%ax	\\
+\hline
+\&S[i]		&	short*	&	$x_S+2i$	&	leaq (\%rdx,\%rcx,2),\%rax	\\
+\hline
+S[4*i + 1]	&	short	&	$M[x_S+8i+2]$	&	movw 2(\%rdx,\%rcx,8),\%rax	\\
+\hline
+S + i - 5	&	short*	&	$x_S+2i-10$	&	leaq -10(\%rdx,\%rcx,2),\%rax	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+
 
 
 

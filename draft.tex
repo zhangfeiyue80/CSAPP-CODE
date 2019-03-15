@@ -360,6 +360,20 @@ $1.0\times10^{ 20 }$	\\
 	&	\multicolumn{2}{l}{.quad}	&	.L7	\\
 \end{tabular}
 \end{table}	
-
+\textbf{练习题3.35分析}	\\
+\blue{long rfun(unsinged long x)}	\\
+\blue{x in \%rdi}	\\
+rfun:	\\
+	\hspace*{1em}pushq \%rbx	\\
+	\hspace*{1em}movq \%rdi, \%rbx	\blue{\%rbx = x}\\
+	\hspace*{1em}movl \$0, \%eax	\blue{\%eax = 0}\\
+	\hspace*{1em}testq \%rdi, \%rdi	\blue{x \& x}\\
+	\hspace*{1em}je .L2	\blue{x ==  0 goto .L2}\\
+	\hspace*{1em}shrq \$2, \%rdi	\blue{x / 4}\\
+	\hspace*{1em}call rfun	\\
+	\hspace*{1em}addq \%rbx, \%rax	\\
+.L2:	\\
+	\hspace*{1em}popq \%rbx	\\
+	\hspace*{1em}ret	\\
 \end{CJK}
 \end{document}
