@@ -375,5 +375,22 @@ rfun:	\\
 .L2:	\\
 	\hspace*{1em}popq \%rbx	\\
 	\hspace*{1em}ret	\\
+\textbf{练习题3.38分析}	\\
+\blue{long sum\_element(long i, long j)}	\\
+\blue{i in \%rdi, j in \%rsi}	\\
+sum\_element:	\\
+\hspace*{1em}leaq 0(, \%rdi,8), \%rdx	\blue{\%rdx = 8i}	\\
+\hspace*{1em}subq \%rdi, \%rdx	\blue{\%rdx = 8i-i = 7i}	\\
+\hspace*{1em}addq \%rsi, \%rdx	\blue{\%rdx = 7i + j}	\\
+\hspace*{1em}leaq (\%rsi,\%rsi,4), \%rax	\blue{\%rax = j+4j=5j}	\\
+\hspace*{1em}addq \%rax, \%rdi	\blue{\%rdi = i+5j}	\\
+\hspace*{1em}movq Q(,\%rdi,8), \%rax	\blue{\%rax = M[8i+40j+Q]}	\\
+\hspace*{1em}addq P(,\%rdx,8), \%rax	\blue{\%rax = M[8i+40j+Q]+M[56i+8j+P]}	\red{P[i][j]=M[P+8(Ni+j)],Q[j][i]=M[Q+8(Mj+i)]}	\\
+\hspace*{1em}ret	\blue{return \%rax}	\\
+
+
+
+
+
 \end{CJK}
 \end{document}
