@@ -386,10 +386,45 @@ sum\_element:	\\
 \hspace*{1em}addq \%rax, \%rdi	\blue{\%rdi = i+5j}	\\
 \hspace*{1em}movq Q(,\%rdi,8), \%rax	\blue{\%rax = M[8i+40j+Q]}	\\
 \hspace*{1em}addq P(,\%rdx,8), \%rax	\blue{\%rax = M[8i+40j+Q]+M[56i+8j+P]}	\red{P[i][j]=M[P+8(Ni+j)],Q[j][i]=M[Q+8(Mj+i)]}	\\
-\hspace*{1em}ret	\blue{return \%rax}	\\
-
-
-
+\hspace*{1em}ret	\blue{return \%rax}	\\[2ex]
+\textbf{练习题3.40分析}	\\[1ex]
+fix\_set\_diag:		\\
+\blue{void fix\_set\_diag(fix\_matrix A, int val)}	\\
+\blue{A in \%rdi, val in \%rsi}	\\
+	\hspace*{1em}movl \$0, \%eax	\blue{\%eax = 0}	\\
+.L13:	\\
+	\hspace*{1em}movl \%esi, (\%rdi,\%rax)	\blue{M[A+0] = val}	\\
+	\hspace*{1em}addq \$68, \%rax	\blue{\%rax = \%rax+68}	\\
+	\hspace*{1em}cmpq \$1088, \%rax	\blue{compare 1088 and \%rax}	\\
+	\hspace*{1em}jne .L13	\blue{\%rax != 1088 , goto L13}	\\
+	\hspace*{1em}rep; ret	\\[2ex]
+A[i][i]=M[A+( Ni+i )]	\\
+A+(Ni+i)=A+i(N+1)	\\
+A+(i+1)(N+1)-A-i(N+1)=(i+1)(N+1)-i(N+1)=iN+i+N+1-(iN+i)=N+1	\\[2ex]
+\newpage
+\noindent\textbf{练习题3.41分析}	\\
+\blue{void sp\_init(struct prob *sp)}	\\
+\blue{sp in \%rdi}	\\
+sp\_init:	\\
+	\hspace*{1em}movl	12(\%rdi), \%eax	\blue{\%eax = M[sp + 12]}	\\
+	\hspace*{1em}movl	\%eax, 8(\%rdi)		\blue{M[sp + 8] = M[sp + 12]}	\\
+	\hspace*{1em}leaq	8(\%rdi), \%rax		\blue{\%rax = sp + 8}	\\
+	\hspace*{1em}movq	\%rax, (\%rdi)		\blue{M[sp] = sp + 8}	\\
+	\hspace*{1em}movq	\%rdi, 16(\%rdi)	\blue{M[sp + 16] = sp}	\\
+	\hspace*{1em}ret	\blue{return}	\\[2ex]
+\textbf{练习题3.42分析}	\\
+\blue{long fun(struct ELE *ptr)}	\\
+\blue{ptr in \%rdi}	\\
+fun:	\\
+	\hspace*{1em}movl	\$0, \%eax	\blue{\%eax = 0}	\\
+	\hspace*{1em}jmp	.L2		\blue{goto .L2}		\\
+.L3:	\\
+	\hspace*{1em}addq	(\%rdi), \%rax	\blue{\%rax = \%rax + M[ptr]}	\red{\%rax = \%rax + ptr$->$v}	\\
+	\hspace*{1em}movq	8(\%rdi), \%rdi	\blue{\%rdi = M[ptr + 8]}	\red{ptr = ptr$->$p}	\\
+.L2	\\
+	\hspace*{1em}testq	\%rdi, \%rdi	\blue{\%rdi \& \%rdi}	\red{ptr \& ptr}	\\
+	\hspace*{1em}jne	.L3	\blue{\%rdi != 0,goto .L3}	\red{ptr != 0, goto .L3}	\\
+	\hspace*{1em}rep; ret		\blue{return}	\\
 
 
 \end{CJK}

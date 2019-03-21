@@ -1136,7 +1136,49 @@ S + i - 5	&	short*	&	$x_S+2i-10$	&	leaq -10(\%rdx,\%rcx,2),\%rax	\\
 \textbf{练习题3.38}	\\
 8M=40,M=5	\\
 8N=56,N=7	\\[2em]
-
+\textbf{练习题3.39}	\\[2ex]
+由 c 代码可知	\\
+$Aptr=x_A+4(16i)=x_A+64i$	\\
+$Bptr=x_B+4k$	\\
+$Bend=x_B+4(16*16+k)=x_B+4k+1024$	\\[2ex]
+\newpage
+\noindent\textbf{练习题3.40}	\\
+void fix\_set\_diag(fix\_matrix A, int val) \{	\\
+	\hspace*{2em}long x = 0;	\\
+	\hspace*{2em}int *Aptr=\&A[0][0];	\\
+	\hspace*{2em}int *Eptr=\&A[N][N];	\\
+	\hspace*{2em}do \{	\\
+		\hspace*{4em}*Aptr=val;	\\
+		\hspace*{4em}Aptr=Aptr+N+1;	\\
+	\hspace*{2em}\} while(Aptr != Eptr);	\\
+\}	\\[3ex]
+\textbf{练习题3.41}	\\[1ex]
+\textbf{A.}	\\
+p:\underline{0}	\\
+s.x:\underline{8}	\\
+s.y:\underline{12}	\\
+next:\underline{16}	\\[1ex]
+\textbf{B.} 这个结构总共需要24个字节	\\[1ex]
+\textbf{C.}  	\\
+void sp\_init(struct prob *sp) \{	\\
+	\hspace*{2em}sp$->$s.x = \underline{sp$->$s.y};	\\
+	\hspace*{2em}sp$->$p = \underline{\&sp$->$s.x};	\\
+	\hspace*{2em}sp$->$next = \underline{sp};	\\
+\}	\\[3ex]
+\textbf{练习题3.42}	\\
+\textbf{A.} 	\\
+long fun(struct ELE *ptr) \{	\\
+	\hspace*{2em}long x=0;	\\
+	\hspace*{2em}while(ptr != 0)	\\
+	\hspace*{2em}\{	\\
+		\hspace*{4em}x += ptr$->$v;	\\
+		\hspace*{4em}ptr = ptr$->$p;	\\
+	\hspace*{2em}\}	\\
+	\hspace*{2em}return x;	\\
+\}	\\[2ex]
+\textbf{B.}	\\
+此结构实现了单向链表的数据结构	\\
+fun将此单向链表中的所有数据元素求和并返回	\\
 
 
 
