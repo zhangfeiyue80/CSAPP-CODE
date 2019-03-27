@@ -1178,7 +1178,104 @@ long fun(struct ELE *ptr) \{	\\
 \}	\\[2ex]
 \textbf{B.}	\\
 此结构实现了单向链表的数据结构	\\
-fun将此单向链表中的所有数据元素求和并返回	\\
+fun将此单向链表中的所有数据元素求和并返回	\\[3ex]
+\newpage
+\textbf{练习题3.43}	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{12em}<{\centering}|m{8em}<{\centering}|m{18em}<{\centering}|}
+\hline
+expr		&	type	&	代码	\\
+\hline
+up$->$t1.u	&	long	&	movq (\%rdi),\%rax	\\
+		&		&	movq \%rax,(\%rsi)	\\
+\hline
+up$->$t1.v	&	\blue{short}	&	\blue{movw (\%rdi,8,),\%ax}	\\
+		&			&	\blue{movw \%ax,(\%rsi)}	\\
+\hline
+\&up$->$t1.w	&	\blue{char *}	&	\blue{leaq (\%rdi,10,),\%rax}	\\
+		&			&	\blue{movq \%rax,\%rsi}		\\
+\hline
+up$->$t2.a	&	\blue{int *}	&	\blue{movq \%rdi,\%rsi}		\\
+\hline
+up$->$t2.a[up$->$t1.u]	&	\blue{int}	&	\blue{movl (\%rdi),\%rax}	\\
+			&			&	\blue{movl (\%rdi,\%rax,4),\%eax}	\\
+			&			&	\blue{movl \%eax,( \%rsi )}	\\
+\hline
+*up$->$t2.p		&	\blue{char}	&	\blue{movb (\%rdi,8,),\%al}	\\
+			&			&	\blue{movb \%al,( \%rsi )}			\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{练习题3.44}	\\[2ex]
+\textbf{A.}	\\[1ex]
+i	0	\\
+c	4	\\
+j	8	\\
+d	12	\\
+总大小	16	\\
+对齐要求:4的倍数	\\[1ex]
+\textbf{B.}	\\[1ex]
+i	0	\\
+c	4	\\
+d	5	\\
+j	8	\\
+总大小	16	\\
+对齐要求:8的倍数	\\[1ex]
+\textbf{C.}	\\[1ex]
+w	0	\\
+c	6	\\
+总大小	10	\\
+对齐要求:2的倍数	\\[1ex]
+\textbf{D.}	\\[1ex]
+w	0	\\
+c	16	\\
+总大小	40	\\
+对齐要求:8的倍数	\\[1ex]
+\textbf{E.}	\\[1ex]
+a	0	\\
+t	24	\\
+总大小	40	\\
+对齐要求:8的倍数	\\[2ex]
+\textbf{3.45}	\\
+\textbf{A.}	\\[-3ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|}
+\hline
+a	&	b	&	c	&	d	&	e	&	f	&	g	&	h	\\
+\hline
+0	&	8	&	16	&	24	&	28	&	32	&	40	&	48	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{B.} 56	\\[1ex]
+\textbf{C.}	\\
+struct \{	\\
+	\hspace*{2em}char *a;	\\
+	\hspace*{2em}double c;	\\
+	\hspace*{2em}long g;	\\
+	\hspace*{2em}float e;	\\
+	\hspace*{2em}int h;	\\
+	\hspace*{2em}short b;	\\
+	\hspace*{2em}char d;	\\
+	\hspace*{2em}char f;	\\
+\} rec;	\\[4ex]
+重排过的结构的字节偏移量:	\\[-3ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|m{6em}<{\centering}|}
+\hline
+a	&	c	&	g	&	e	&	h	&	b	&	d	&	f	\\
+\hline
+0	&	8	&	16	&	24	&	28	&	32	&	34	&	35	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+重排过的结构的总大小:40
 
 
 
