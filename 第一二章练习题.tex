@@ -1275,7 +1275,47 @@ a	&	c	&	g	&	e	&	h	&	b	&	d	&	f	\\
 \hline
 \end{tabular}
 \end{table}	\\[2ex]
-重排过的结构的总大小:40
+重排过的结构的总大小:40	\\[3ex]
+\textbf{练习题3.46}	\\
+\textbf{A.}	\\[-2ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}|m{16em}<{\centering}|}
+\hline
+00	&	00	&	00	&	00	&	00	&	40	&	00	&	76	&	返回地址	\\
+\hline
+\blue{01}	&	\blue{23}	&	\blue{45}	&	\blue{ 67 }	&	\blue{ 89 }	&	\blue{ AB }	&	\blue{ CD }	&	\blue{ EF }	&	\blue{\%rbx的值}	\\
+\hline
+	&		&		&		&		&		&		&		&	\\
+\hline
+	&		&		&		&		&		&		&		&
+	\blue{  \%rsp 指向的内存位置 }	\\
+\hline
+	&		&		&		&		&		&		&		&	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\newpage
+\textbf{B.}	\\[-2ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}|m{16em}<{\centering}|}
+\hline
+00	&	00	&	00	&	00	&	00	&	40	&	00	&	76	&	返回地址	\\
+\hline
+\blue{01}	&	\blue{23}	&	\blue{45}	&	\blue{ 67 }	&	\blue{ 89 }	&	\blue{ AB }	&	\blue{ CD }	&	\blue{ EF }	&	\blue{\%rbx的值}	\\
+\hline
+	&		&		&		&		&		&		&		&	\\
+\hline
+\blue{00}	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{40}	&	\blue{07}	&	\blue{33}	&	\blue{  \%rsp 指向的内存位置 }	\\
+\hline
+	&		&		&		&		&		&		&		&	\\
+\hline
+\end{tabular}
+\end{table}	\\
+\textbf{C.}	\\
 
 
 
