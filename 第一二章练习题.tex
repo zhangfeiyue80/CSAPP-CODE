@@ -1316,6 +1316,12 @@ a	&	c	&	g	&	e	&	h	&	b	&	d	&	f	\\
 \end{tabular}
 \end{table}	\\
 \textbf{C.}	\\
+程序应该试图返回到地址0x400076	\\[2ex]
+\textbf{D.}	\\
+当get\_line返回时，寄存器\%rbx,\%rcp的值被破坏了	\\[2ex]
+\textbf{E.}	\\
+\textbf{1)} malloc参数错误，buf是一个指向char型的指针,因此对于32位机器malloc会分配4个字节，对于64位机器，malloc会分配8个字节,这造成了内存空间的浪费	\\
+\textbf{2)} malloc分配内存空间后，需要手动调用free函数来释放空间，否则会造成内存泄漏，浪费内存空间	\\
 
 
 
