@@ -3,6 +3,7 @@
 %\usepackage{type1cm}
 \usepackage{color}
 \usepackage{array}
+\usepackage{amssymb}
 \usepackage[margin=1cm,top=1cm,bottom=2cm]{geometry}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
@@ -1053,17 +1054,17 @@ F1	&	0x400548	&	lea	&	10	&	---	&	---	&	0x7fffffffe818	&	0x400565	&	进入first	\
 \hline
 F2	&	0x40054c	&	sub	&	10	&	11	&	---	&	0x7fffffffe818	&	0x400565	&	执行first	\\
 \hline
-F3	&	0x400550	&	callq	&	10	&	11	&	---	&	0x7fffffffe818	&	0x400565	&	调用last(10,11)	\\
+F3	&	0x400550	&	callq	&	9	&	11	&	---	&	0x7fffffffe818	&	0x400565	&	调用last(10,11)	\\
 \hline
-L1	&	0x400540	&	mov	&	10	&	11	&	---	&	0x7fffffffe816	&	0x400555	&	进入last	\\
+L1	&	0x400540	&	mov	&	9	&	11	&	---	&	0x7fffffffe810	&	0x400555	&	进入last	\\
 \hline
-L2	&	0x400543	&	imul	&	10	&	11	&	10	&	0x7fffffffe816	&	0x400555	&	执行last	\\
+L2	&	0x400543	&	imul	&	9	&	11	&	9	&	0x7fffffffe810	&	0x400555	&	执行last	\\
 \hline
-L3	&	0x400547	&	retq	&	10	&	11	&	110	&	0x7fffffffe816	&	0x400555	&	从last返回110	\\
+L3	&	0x400547	&	retq	&	9	&	11	&	99	&	0x7fffffffe810	&	0x400555	&	从last返回110	\\
 \hline
-F4	&	0x400555	&	repz pretq	&	10	&	11	&	110	&	0x7fffffffe818	&	0x400565	&	从first返回110	\\
+F4	&	0x400555	&	repz repq	&	9	&	11	&	99	&	0x7fffffffe818	&	0x400565	&	从first返回110	\\
 \hline
-M2	&	0x400565	&	mov	&	10	&	11	&	110	&	0x7fffffffe820	&	---	&	继续main	\\
+M2	&	0x400565	&	mov	&	9	&	11	&	99	&	0x7fffffffe820	&	---	&	继续main	\\
 \hline
 \end{tabular}
 \end{table}	\\[2ex]
@@ -1297,31 +1298,129 @@ a	&	c	&	g	&	e	&	h	&	b	&	d	&	f	\\
 \end{tabular}
 \end{table}	\\[2ex]
 \newpage
-\textbf{B.}	\\[-2ex]
+\noindent\textbf{B.}	\\[-2ex]
 \renewcommand\arraystretch{1.4}
 \begin{table}[htbp]
 \centering
 \begin{tabular}{|m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}|m{16em}<{\centering}|}
 \hline
-00	&	00	&	00	&	00	&	00	&	40	&	00	&	76	&	返回地址	\\
+00	&	00	&	00	&	00	&	00	&	40	&	00	&	\blue{34}	&	返回地址	\\
 \hline
-\blue{01}	&	\blue{23}	&	\blue{45}	&	\blue{ 67 }	&	\blue{ 89 }	&	\blue{ AB }	&	\blue{ CD }	&	\blue{ EF }	&	\blue{\%rbx的值}	\\
+\blue{33}	&	\blue{32}	&	\blue{31}	&	\blue{30}	&	\blue{39}	&	\blue{38}	&	\blue{37}	&	\blue{36}	&	\\
 \hline
-	&		&		&		&		&		&		&		&	\\
+\blue{35}	&	\blue{34}	&	\blue{33}	&	\blue{32}	&	\blue{31}	&	\blue{30}	&	\blue{39}	&	\blue{38}	&	\\
 \hline
-\blue{00}	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{40}	&	\blue{07}	&	\blue{33}	&	\blue{  \%rsp 指向的内存位置 }	\\
+\blue{37}	&	\blue{36}	&	\blue{35}	&	\blue{34}	&	\blue{33}	&	\blue{32}	&	\blue{31}	&	\blue{30}	&	\\
 \hline
-	&		&		&		&		&		&		&		&	\\
+\blue{00}	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{ 00 }	&	\blue{40}	&	\blue{07}	&	\blue{33}	&		\\
 \hline
 \end{tabular}
 \end{table}	\\
 \textbf{C.}	\\
-程序应该试图返回到地址0x400076	\\[2ex]
+程序应该试图返回到地址0x400034	\\[2ex]
 \textbf{D.}	\\
 当get\_line返回时，寄存器\%rbx,\%rcp的值被破坏了	\\[2ex]
 \textbf{E.}	\\
 \textbf{1)} malloc参数错误，buf是一个指向char型的指针,因此对于32位机器malloc会分配4个字节，对于64位机器，malloc会分配8个字节,这造成了内存空间的浪费	\\
-\textbf{2)} malloc分配内存空间后，需要手动调用free函数来释放空间，否则会造成内存泄漏，浪费内存空间	\\
+\textbf{2)} malloc分配内存空间后，需要手动调用free函数来释放空间，否则会造成内存泄漏，浪费内存空间.	\\
+\red{对malloc函数的调用，其参数应该为strlen(buf)+1,而且还应该检查其返回值是否为NULL}	\\[2ex]
+\textbf{练习题3.47}	\\
+\textbf{A.} 地址的大概范围是2\^{}13	\\
+\textbf{B.} 2\^{}13/128=2\^{}13/2\^{}7=2\^{}6=64	\\
+要想穷尽所有起始地址，需要64次.	\\[2ex]
+\textbf{练习题3.48}	\\
+\textbf{A.}	\\
+\textbf{a.}	\\[-2ex]
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}|m{16em}<{\centering}|}
+\hline
+	&	&	&	&	&	&	&		&	返回地址	\\
+\hline
+	\\
+\hline
+&	&	&	&	&	&	&		&	x的值 \red{v的位置}	\\
+\hline
+	\\
+\hline
+	\\
+\hline
+&	&	&	&	&	&	&		&	\%rsp的位置 \red{buf的位置}	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{b.}	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}m{2em}<{\centering}|m{16em}<{\centering}|}
+\hline
+	&	&	&	&	&	&	&		&	返回地址	\\
+\hline
+	\\
+\hline
+	&	&	&	&	&	&	&		&	金丝雀值(guard value)	\\
+\hline
+	\\
+\hline
+	\\
+\hline
+	&	&	&	&	&	&	&		&	\red{buf的位置}	\\
+\hline
+	&	&	&	&	&	&	&		&	x的值 \red{v的位置}	\\
+\hline
+	&	&	&	&	&	&	&		&	\%rsp的位置	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\newpage
+\noindent\textbf{B.}	\\
+在有保护的代码中，v比buf更靠近栈顶，因此buf溢出不会破坏v的值	\\[2ex]
+\textbf{练习题3.49}	\\[1ex]
+\textbf{A.}	\\
+$s_1=\%rsp-16$	\\
+\%rax=8n+22	\\
+\%rax=\%rax-\%rax mod 16	\\
+$s_2=s_1-\%rax=s_1-(\%rax-\%rax mod 16)=s_1-[8n+22-(8n+22)mod 16]=s_1-[8n+22-(16n/2)mod 16-22mod 16]=s_1-[8n+22-(16n/2)mod 16-6]$	\\
+1)当n为非零偶数时	\\
+$s_2=s_1-[8n+22-6]=s_1-8n-16$	\\
+2)当n为奇数时	\\
+$s_2=s_1-[8n+22-8-6]=s_1-8n-8$	\\[1ex]
+\textbf{B.}	\\
+$\%rax=s_2+7$	\\
+$\%rax=\lfloor\%rax/8\rfloor$	\\
+$p=8*\%rax$	\\
+$p=8*\lfloor(s_2+7)/8\rfloor$	\\
+1)当n为非零偶数时	\\
+$p=8*\lfloor(s_1-8n-16+7)/8\rfloor=8*\lfloor(s_1-8n-9)/8\rfloor=8*\lfloor(s_1-1-8n-8)/8\rfloor=8*[\lfloor(s_1-1)/8\rfloor-(n+1)]$	\\
+2)当n为奇数时	\\
+$p=8*\lfloor(s_1-8n-8+7)/8\rfloor=8*\lfloor(s_1-8n-1)/8\rfloor=8*[\lfloor(s_1-1)/8\rfloor-n]$	\\[1ex]
+\textbf{C.}	\\
+$e_1=s_1-(p+8n)$	\\
+$e_2=p-s_2$	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{6em}<{\centering}m{6em}<{\centering}m{6em}<{\centering}m{6em}<{\centering}m{6em}<{\centering}m{6em}<{\centering}|}
+\hline
+n	&	$s_1$	&	$s_2$	&	p	&	$e_1$	&	$e_2$	\\
+\hline
+5	&	2065	&	2017	&	2024	&	1	&	7	\\
+6	&	2064	&	2000	&	2000	&	16	&	0	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
+\textbf{D.}	\\
+该段代码不为$s_2$提供任何对齐属性，使p对齐到到8	\\
+\red{可以看到，$s_2$会保留$s_1$的偏移量为最接近16的倍数，并将p对齐到8的倍数，正是对8字节元素所要求的对齐方式}	\\[3ex]
+\textbf{练习题3.50}	\\
+映射关系如下	\\
+val1
+
+
+
+
 
 
 
