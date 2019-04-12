@@ -424,7 +424,23 @@ fun:	\\
 .L2	\\
 	\hspace*{1em}testq	\%rdi, \%rdi	\blue{\%rdi \& \%rdi}	\red{ptr \& ptr}	\\
 	\hspace*{1em}jne	.L3	\blue{\%rdi != 0,goto .L3}	\red{ptr != 0, goto .L3}	\\
-	\hspace*{1em}rep; ret		\blue{return}	\\
+	\hspace*{1em}rep; ret		\blue{return}	\\[3ex]
+\textbf{练习题3.50分析}	\\[1ex]
+\blue{double fcvt2(int *ip, float *fp, double *dp, long l)}\\
+\blue{ip in \%rdi, fp in \%rsi, dp in \%rdx, l in \%rcx}	\\
+\blue{Result returned in \%xmm()}	\\
+fcvt2:	\\
+	\hspace*{1em}movl (\%rdi), \%eax \blue{\%eax=*ip}	\\
+	\hspace*{1em}vmovss (\%rsi), \%xmm0 \blue{\%xmm0=*fp}	\\
+	\hspace*{1em}vcvttsd2si (\%rdx) \%r8d \blue{\%r8d=(int) *dp}	\\
+	\hspace*{1em}movl \%r8d, (\%rdi) \blue{*ip=(int) *dp}	\\
+	\hspace*{1em}vcvtsi2ss \%eax, \%xmm1, \%xmm1 \blue{\%xmm1=(float) *ip}	\\
+	\hspace*{1em}vmovss \%xmm1, (\%rsi) \blue{*fp=(float) *ip}	\\
+	\hspace*{1em}vcvtsi2sdq \%rcx, \%xmm1, \%xmm1 \blue{\%xmm1=(double) l}	\\
+	\hspace*{1em}vmovsd \%xmm1, (\%rdx) \blue{*dp=(double) l}	\\
+	\hspace*{1em}vunpcklps \%xmm0, \%xmm0, \%xmm0 \blue{}	\\
+	\hspace*{1em}vcvtps2pd \%xmm0, \%xmm0 \blue{return (double) *fp}	\\
+	\hspace*{1em}ret	\\
 
 
 \end{CJK}
