@@ -1416,7 +1416,32 @@ n	&	$s_1$	&	$s_2$	&	p	&	$e_1$	&	$e_2$	\\
 \red{可以看到，$s_2$会保留$s_1$的偏移量为最接近16的倍数，并将p对齐到8的倍数，正是对8字节元素所要求的对齐方式}	\\[3ex]
 \textbf{练习题3.50}	\\
 映射关系如下	\\
-val1
+val1$->$d	\\
+val2$->$i	\\
+val3$->$l	\\
+val4$->$f	\\[3ex]
+\newpage
+\noindent\textbf{练习题.51}	\\
+\renewcommand\arraystretch{1.4}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|m{6em}<{\centering}|m{6em}<{\centering}|m{16em}<{\centering}|}
+\hline
+$T_x$	&	$T_y$	&	指令	\\
+\hline
+long	&	double	&	vcvtsi2sdq \%rdi,\%xmm0	\\
+\hline
+double	&	int	&	\blue{vcvttsd2si \%xmm0, \%eax}	\\
+\hline
+double	&	float	&	\blue{vmovddup \%xmm0, \%xmm0}	\\
+	&		&	\blue{vcvtpd2psx \%xmm0, \%xmm0}	\\
+\hline
+long	&	float	&	\blue{vcvtsi2ssq \%rdi, \%xmm0, \%xmm0}	\\
+\hline
+float	&	long	&	\blue{vcvttss2siq \%xmm0, \%rax}	\\
+\hline
+\end{tabular}
+\end{table}	\\[2ex]
 
 
 
