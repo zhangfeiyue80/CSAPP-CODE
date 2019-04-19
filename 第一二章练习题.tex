@@ -1442,6 +1442,60 @@ float	&	long	&	\blue{vcvttss2siq \%xmm0, \%rax}	\\
 \hline
 \end{tabular}
 \end{table}	\\[2ex]
+\textbf{练习题3.52}	\\
+\textbf{A.}	\\
+a$->$\%xmm0,b$->$\%rdi,c$->$\%xmm1,d$->$\%esi	\\
+\textbf{B.}	\\
+a$->$\%edi,b$->$\%rsi,c$->$\%rdx,d$->$\%rcx	\\
+\textbf{C.}	\\
+a$->$\%rdi,b$->$\%xmm0,c$->$\%esi,d$->$\%xmm1	\\
+\textbf{D.}	\\
+a$->$\%xmm0,b$->$\%rdi,c$->$\%xmm1,d$->$\%xmm2	\\[3ex]
+\textbf{练习题3.53}	\\
+\textbf{1)}	\\
+p in \%rdi,q in \%xmm0,r in \%rsi,s in \%xmm1	\\
+arg1\_t$->$int	\\
+arg2\_t$->$float	\\
+arg3\_t$->$long	\\
+arg4\_t$->$double	\\
+\textbf{2)}	\\
+p in \%rdi,q in \%rsi,r in \%xmm0,s in \%xmm1	\\
+arg1\_t$->$int	\\
+arg2\_t$->$long	\\
+arg3\_t$->$float	\\
+arg4\_t$->$double	\\[3ex]
+\textbf{练习题3.54}	\\
+double funct2(double w, int x, float y, long z);	\\
+\{	\\
+	\hspace*{2em}return (double)(y*x)-w/z;	\\
+	\hspace*{2em}\red{ return (y*x)-w/z };	\\
+\}	\\[3ex]
+\textbf{练习题3.55}	\\
+第一个值是低位字节(0x0)，第二个值是高位字节(0x40400000)，指数字段为0x404(1028),减去bias得到指数为5，小数字段为0x0,国此M=1,因此.LC3处表示数字32.0	\\[3ex]
+\newpage
+\noindent\textbf{练习题3.56}	\\
+\textbf{A.} 符号位(最高位置0)置0	\\
+\textbf{B.} 置x所有位为0	\\
+\textbf{C.} 除符号位(最高位)所有位置0	\\[3ex]
+\textbf{练习题3.57}	\\
+double funct3(int *ap, double b, long c, float *dp)	\\
+\{	\\
+	\hspace*{2em}double x;	\\
+	\hspace*{2em}float y;	\\
+	\hspace*{2em}x=(double) *ap;	\\
+	\hspace*{2em}y=(float) c;	\\
+	\hspace*{2em}if(b$<=$x)	\\
+	\hspace*{2em}\{		\\
+	\hspace*{3em}*dp=2 * *dp;	\\
+	\hspace*{3em}y=y+*dp;	\\
+	\hspace*{3em}return (double) y;	\\
+	\hspace*{2em}\}		\\
+	\hspace*{2em}else	\\
+	\hspace*{2em}\{		\\
+	\hspace*{3em}*dp=*dp * y;	\\
+	\hspace*{3em}return (double) *dp;	\\
+	\hspace*{2em}\}		\\
+\}	\\
 
 
 

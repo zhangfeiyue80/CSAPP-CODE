@@ -440,7 +440,71 @@ fcvt2:	\\
 	\hspace*{1em}vmovsd \%xmm1, (\%rdx) \blue{*dp=(double) l}	\\
 	\hspace*{1em}vunpcklps \%xmm0, \%xmm0, \%xmm0 \blue{}	\\
 	\hspace*{1em}vcvtps2pd \%xmm0, \%xmm0 \blue{return (double) *fp}	\\
-	\hspace*{1em}ret	\\
+	\hspace*{1em}ret	\\[3ex]
+\textbf{练习题3.53分析}	\\
+\blue{double funct1(arg1\_t p, arg2\_t q,arg3\_t r, arg4\_t s)}	\\
+funct1:	\\
+\hspace*{1em}vcvtsi2ssq	\%rsi, \%xmm2, \%xmm2 \blue{$\%xmm2_{float}=\%rsi_{long}$}	\\
+\hspace*{1em}vaddss	\%xmm0, \%xmm2, \%xmm0 \blue{$\%xmm0_{float}=\%xmm0_{float}+\%xmm2_{float}$}	\\
+\hspace*{1em}vcvtsi2ss	\%rdi, \%xmm2, \%xmm2 \blue{$\%xmm2_{float}=\%rdi_{int}$}	\\
+\hspace*{1em}vdivss	\%xmm0, \%xmm2, \%xmm0 \blue{$\%xmm0_{float}=\%xmm2_{float}/\%xmm0_{float}$}	\\
+\hspace*{1em}vunpcklps	\%xmm0, \%xmm0, \%xmm0 \blue{}	\\
+\hspace*{1em}vcvtps2pd	\%xmm0, \%xmm0 \blue{$\%xmm0_{double}=(double)\%xmm0_{float}$}	\\
+\hspace*{1em}vsubsd	\%xmm1, \%xmm0, \%xmm0 \blue{$\%xmm0_{double}=\%xmm0_{double}-\%xmm1_{double}$}	\\
+\hspace*{1em}ret \blue{return $\%xmm0_{double}$}	\\[3ex]
+\newpage
+\noindent\textbf{练习题3.54分析}	\\
+\blue{double funct2(double w, int x, float y, long z)}	\\
+\blue{w in \%xmm0, x in \%edi, y in \%xmm1, z in \%rsi}	\\
+funct2:	\\
+\hspace*{1em}vcvtsi2ss	\%edi, \%xmm2, \%xmm2 \blue{$\%xmm2_{float}=(float)x_{int}$}	\\
+\hspace*{1em}vmulss	\%xmm1, \%xmm2, \%xmm1 \blue{$y_{float}=y_{float}*(float)x_{int}$}	\\
+\hspace*{1em}vunpcklps	\%xmm1, \%xmm1, \%xmm1 \blue{}	\\
+\hspace*{1em}vcvtps2pd	\%xmm1, \%xmm2 \blue{$\%xmm2_{double}=(double)y_{float}=(double)(y_{float}*(float)x_{int})$}	\\
+\hspace*{1em}vcvtsi2sdq	\%rsi, \%xmm1, \%xmm1 \blue{$y_{double}=(double)z_{long}$}	\\
+\hspace*{1em}vdivsd	\%xmm1, \%xmm0, \%xmm0 \blue{$w_{double}=w_{double}/(double)z_{long}$}	\\
+\hspace*{1em}vsubsd	\%xmm0, \%xmm2, \%xmm0 \blue{$w_{double}=(double)(y_{float}*(float)x_{int})-w_{double}/(double)z_{long}$}	\\
+\hspace*{1em}ret \blue{return $w_{double}$}	\\[3ex]
+\textbf{练习题3.56分析}	\\
+\textbf{A.}	\\
+	\hspace*{1em}vmovsd	.LC1(\%rip), \%xmm1	\\
+	\hspace*{1em}vandpd	\%xmm1, \%xmm0, \%xmm0 \blue{x \& 0x7f ff ff ff ff ff ff ff}	\\
+.LC1:	\\
+	\hspace*{1em}.long	4294967295 \blue{低位4个字节:0xff ff ff ff}	\\
+	\hspace*{1em}.long	2147483647 \blue{高位4个字节:0x7f ff ff ff}	\\
+	\hspace*{1em}.long	0	\\
+	\hspace*{1em}.long	0	\\
+\textbf{B.}	\\
+	\hspace*{1em}vxorpd	\%xmm0, \%xmm0, \%xmm0 \blue{\%xmm0=0x0}	\\
+\textbf{C.}	\\
+	\hspace*{1em}vmovsd	.LC2(\%rip), \%xmm1 \blue{}	\\
+	\hspace*{1em}vxorpd	\%xmm1, \%xmm0, \%xmm0 \blue{0x80 00 00 00 00 00 00 00 \& x}	\\
+.LC2:	\\
+	\hspace*{1em}.long	0 \blue{0x0}	\\
+	\hspace*{1em}.long	-2147483648 \blue{0x80 00 00 00}	\\
+	\hspace*{1em}.long	0 \blue{0x0}	\\
+	\hspace*{1em}.long	0 \blue{0x0}	\\[3ex]
+\textbf{练习题3.57分析}	\\
+\blue{double funct3(int *ap, double b, long c, float *dp)}	\\
+\blue{ap in \%rdi, b in \%xmm0, c in \%rsi, dp in \%rdx}	\\
+funct3:	\\
+	\hspace*{1em}vmovss	(\%rdx), \%xmm1 \blue{$\%xmm1_{float}=*dp_{float}$}	\\
+	\hspace*{1em}vcvtsi2sd	(\%rdi), \%xmm2, \%xmm2 \blue{$\%xmm2_{double}=(double)*ap$}	\\
+	\hspace*{1em}vucomisd	\%xmm2, \%xmm0 \blue{compare $b_{double}:(double)*ap$}	\\
+	\hspace*{1em}jbe	.L8 \blue{$b_{double}\le(double)*ap$, goto .L8}	\\
+	\hspace*{1em}vcvtsi2ssq	\%rsi, \%xmm0, \%xmm0 \blue{$\%xmm0_{float}=(float)c_{long}$}	\\
+	\hspace*{1em}vmulss	\%xmm1, \%xmm0, \%xmm1 \blue{$\%xmm1_{float}=*dp_{float}*(float)c_{long}$}	\\
+	\hspace*{1em}vunpcklps	\%xmm1, \%xmm1, \%xmm1 \blue{}	\\
+	\hspace*{1em}vcvtps2pd	\%xmm1, \%xmm0 \blue{$\%xmm0_{double}=(double)\%xmm1_{float}$}	\\
+	\hspace*{1em}ret \blue{return \%xmm0}	\\
+.L8:	\\
+\hspace*{1em}vaddss	\%xmm1, \%xmm1, \%xmm1 \blue{$*dp_{float}=*dp_{float}+*dp_{float}$}	\\
+	\hspace*{1em}vcvtsi2ssq	\%rsi, \%xmm0, \%xmm0 \blue{$\%xmm0_{float}=(float)c_{long}$}	\\
+	\hspace*{1em}vaddss	\%xmm1, \%xmm0, \%xmm0 \blue{$\%xmm0_{float}=*dp_{float}+(float)c_{long}$}	\\
+	\hspace*{1em}vunpcklps	\%xmm0, \%xmm0, \%xmm0 \blue{}	\\
+	\hspace*{1em}vcvtps2pd	\%xmm0, \%xmm0 \blue{$\%xmm0_{double}=(double)\%xmm0_{float}$}	\\
+	\hspace*{1em}ret \blue{return $\%xmm0_{double}$}	\\
+
 
 
 \end{CJK}
