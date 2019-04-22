@@ -503,7 +503,20 @@ funct3:	\\
 	\hspace*{1em}vaddss	\%xmm1, \%xmm0, \%xmm0 \blue{$\%xmm0_{float}=*dp_{float}+(float)c_{long}$}	\\
 	\hspace*{1em}vunpcklps	\%xmm0, \%xmm0, \%xmm0 \blue{}	\\
 	\hspace*{1em}vcvtps2pd	\%xmm0, \%xmm0 \blue{$\%xmm0_{double}=(double)\%xmm0_{float}$}	\\
-	\hspace*{1em}ret \blue{return $\%xmm0_{double}$}	\\
+	\hspace*{1em}ret \blue{return $\%xmm0_{double}$}	\\[3ex]
+\newpage
+\noindent\textbf{练习题4.1分析}	\\
+.pos 0x100 \# start code at address 0x100	\\
+	\hspace*{1em}irmovq \$15,\%rbx	\blue{30f3 0f 00 00 00 00 00 00 00}\\
+	\hspace*{1em}rrmovq \%rbx,\%rcx	\blue{2031}\\
+loop:	\\
+	\hspace*{1em}rmmovq \%rcx,-3(\%rbx)	\blue{4013 fd ff ff ff ff ff ff ff}\\
+	\hspace*{1em}addq \%rbx,\%rcx	\blue{6031}\\
+	\hspace*{1em}jmp loop	\blue{70 0c 01 00 00 00 00 00 00}\\[3ex]
+\textbf{练习题4.2分析}	\\
+\textbf{A.}	\\
+0x100:30f3fcffffffffffffff40630008000000000000	\\
+\textbf{B.}	\\
 
 
 

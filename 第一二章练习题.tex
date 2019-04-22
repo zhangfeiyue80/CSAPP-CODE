@@ -1495,7 +1495,16 @@ double funct3(int *ap, double b, long c, float *dp)	\\
 	\hspace*{3em}*dp=*dp * y;	\\
 	\hspace*{3em}return (double) *dp;	\\
 	\hspace*{2em}\}		\\
-\}	\\
+\}	\\[3ex]
+\textbf{练习题4.1}	\\
+.pos 0x100 \# start code at address 0x100	\\
+	\hspace*{1em}irmovq \$15,\%rbx	\blue{30f3 0f 00 00 00 00 00 00 00}\\
+	\hspace*{1em}rrmovq \%rbx,\%rcx	\blue{2031}\\
+loop:	\\
+	\hspace*{1em}rmmovq \%rcx,-3(\%rbx)	\blue{4013 fd ff ff ff ff ff ff ff}\\
+	\hspace*{1em}addq \%rbx,\%rcx	\blue{6031}\\
+	\hspace*{1em}jmp loop	\blue{70 0c 01 00 00 00 00 00 00}\\[3ex]
+\textbf{练习题4.2}	\\
 
 
 
