@@ -1505,9 +1505,19 @@ loop:	\\
 	\hspace*{1em}addq \%rbx,\%rcx	\blue{6031}\\
 	\hspace*{1em}jmp loop	\blue{70 0c 01 00 00 00 00 00 00}\\[3ex]
 \textbf{练习题4.2}	\\
-
-
-
+\textbf{A.}	\\
+.pos 0x100	\\
+	\hspace*{1em}irmovq \$-4,\%rbx	\\
+	\hspace*{1em}rmmovq \%rsi,0x800(\%rbx)	\\
+\textbf{B.}	\\
+.pos 0x200	\\
+	\hspace*{1em}pushq \%rsi	\\
+	\hspace*{1em}call proc	\\
+	\hspace*{1em}halt		\\
+proc:	\\
+	\hspace*{1em}irmovq \$10,\%rbx	\\
+	\hspace*{1em}ret		\\
+\textbf{C.}	\\
 
 
 
