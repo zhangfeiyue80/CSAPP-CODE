@@ -10,7 +10,7 @@ void show_bytes(byte_pointer start, size_t len)
 	printf("\n");
 }
 
-// 为大端法机器输出字节，结果会以自然语言的习惯显示字节
+// 为小端法机器输出字节，结果会以自然语言的习惯显示字节
 void little_endian_show_bytes(byte_pointer start, size_t len) 
 {
 	size_t i;
